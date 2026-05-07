@@ -65,7 +65,7 @@ const startLogoServer = async (): Promise<void> => {
       info(`Logo server started on port ${PORT}`)
     }
   } else if (DEBUG) {
-    info("Server already started")
+    info("Logo server already started")
   }
 }
 
@@ -76,10 +76,10 @@ const stopLogoServer = async (): Promise<void> => {
     SERVER = null
 
     if (DEBUG) {
-      info("Server stopped")
+      info("Logo server stopped")
     }
   } else if (DEBUG) {
-    info("Server already stopped")
+    info("Logo server already stopped")
   }
 }
 
