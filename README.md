@@ -7,8 +7,8 @@
 ![Biome](https://img.shields.io/badge/Biome-^2.4.13-informational?style=plastic&logo=biome) &nbsp;
 ![Bun](https://img.shields.io/badge/Bun-~1.3.13-informational?style=plastic&logo=bun)
 
-![Coverage](https://img.shields.io/badge/Coverage-100%25-success?style=plastic&logo=jest) &nbsp;
-![CodeQL](https://github.com/chump29/logoserver/workflows/CodeQL/badge.svg)
+![CodeQL](https://github.com/chump29/logoserver/workflows/CodeQL/badge.svg) &nbsp;
+![Coverage](https://img.shields.io/badge/Coverage-100%25-success?style=plastic&logo=jest)
 
 ![License](https://img.shields.io/github/license/chump29/logoserver?style=plastic&color=blueviolet&label=License&logo=gplv3)
 
