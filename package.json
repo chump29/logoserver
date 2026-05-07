@@ -1,6 +1,6 @@
 {
   "name": "@postfmly/logoserver",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Logo server",
   "keywords": [
     "logo",
@@ -21,7 +21,7 @@
   "types": "index.d.ts",
   "scripts": {
     "build": "bun run build:clean && bun run build:build && bun run build:dts && bun run build:copy && bun run build:rm",
-    "build:build": "bun build index.ts --target node --minify --outdir dist",
+    "build:build": "bun build index.ts --target bun --minify --outdir dist",
     "build:clean": "rimraf dist",
     "build:copy": "cp -f LICENSE package.json README.md dist/",
     "build:dts": "bunx tsc --declaration --emitDeclarationOnly --outDir dist --noEmit false --skipLibCheck",

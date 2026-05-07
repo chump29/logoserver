@@ -10,7 +10,7 @@
         "http-status": "^2.1.0",
       },
       "devDependencies": {
-        "@postfmly/config": "^1.2.11",
+        "@postfmly/config": "^1.2.14",
         "rimraf": "^6.1.3",
       },
     },
