@@ -10,7 +10,7 @@
         "http-status": "^2.1.0",
       },
       "devDependencies": {
-        "@postfmly/config": "^1.2.14",
+        "@postfmly/config": "^1.2.15",
         "rimraf": "^6.1.3",
       },
     },
@@ -34,7 +34,7 @@
 
     "@biomejs/cli-win32-x64": ["@biomejs/cli-win32-x64@2.4.14", "https://npm.postfmly.com/@biomejs/cli-win32-x64/-/cli-win32-x64-2.4.14.tgz", { "os": "win32", "cpu": "x64" }, "sha512-WL0EG5qE+EAKomGXbf2g6VnSKJhTL3tXC0QRzWRwA5VpjxNYa6H4P7ZWfymbGE4IhZZQi1KXQ2R0YjwInmz2fA=="],
 
-    "@postfmly/config": ["@postfmly/config@1.2.14", "https://npm.postfmly.com/@postfmly/config/-/config-1.2.14.tgz", { "peerDependencies": { "@biomejs/biome": "^2.4.14", "@types/bun": "^1.3.13", "@types/node": "^25.6.0", "typescript": "^6.0.3" }, "bin": { "config-init": "bin/init" } }, "sha512-FDl+HhVuHfeWreDVULZpCNZEEpjp3xz+sMGUPPmHI5Q1UFvvv/QFA43+s75xL2EudoTA1KRJ0/+Pg/kCNb/wBQ=="],
+    "@postfmly/config": ["@postfmly/config@1.2.15", "https://npm.postfmly.com/@postfmly/config/-/config-1.2.15.tgz", { "peerDependencies": { "@biomejs/biome": "^2.4.14", "@types/bun": "^1.3.13", "@types/node": "^25.6.0", "typescript": "^6.0.3" }, "bin": { "config-init": "bin/init" } }, "sha512-6yp1uVLqGD0NCMNvv1OOH/A+7E90MdkPNvEyvL7ZH+vPuz+BjrLxrBnkPwmMd3HvX/6pkhlnlW7KCCwZfQK2JA=="],
 
     "@postfmly/logger": ["@postfmly/logger@1.0.1", "https://npm.postfmly.com/@postfmly/logger/-/logger-1.0.1.tgz", { "dependencies": { "date-and-time": "^4.4.0" } }, "sha512-eFIUsuuM2CZN2Ev1bEyBHjmroKOaAIEYuFtKbcBlWo3hB/UgGAwAPW7sX30/0SIKopRiGU5wkChcWs6yqDu2VA=="],
 

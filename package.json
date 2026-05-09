@@ -26,10 +26,11 @@
     "build:copy": "cp -f LICENSE package.json README.md dist/",
     "build:dts": "bunx tsc --declaration --emitDeclarationOnly --outDir dist --noEmit false --skipLibCheck",
     "build:rm": "rm dist/index.test.d.ts",
-    "clean": "rimraf node_modules bun.lock .vscode dist",
-    "postinstall": "config-init",
+    "clean": "rimraf node_modules bun.lock .vscode dist coverage",
+    "clean:coverage": "rimraf coverage",
+    "prepare": "config-init",
     "lint": "biome check --write --verbose .",
-    "test": "bun test --coverage --isolate"
+    "test": "bun run clean:coverage && bun test --coverage --isolate --coverage-reporter=text --coverage-reporter=lcov"
   },
   "dependencies": {
     "@postfmly/logger": "^1.0.1",
@@ -37,7 +38,7 @@
     "http-status": "^2.1.0"
   },
   "devDependencies": {
-    "@postfmly/config": "^1.2.14",
+    "@postfmly/config": "^1.2.15",
     "rimraf": "^6.1.3"
   },
   "packageManager": "bun@1.3.13",
