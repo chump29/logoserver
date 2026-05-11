@@ -1,6 +1,6 @@
 {
   "name": "@postfmly/logoserver",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Logo server",
   "keywords": [
     "logo",
@@ -36,7 +36,7 @@
     "typescript": "^6.0.3"
   },
   "dependencies": {
-    "@postfmly/logger": "^1.0.1",
+    "@postfmly/logger": "^1.0.3",
     "get-port": "^7.2.0",
     "http-status": "^2.1.0"
   },
