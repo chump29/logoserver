@@ -44,7 +44,7 @@ await logoServer.stop()
 ### Testing
 
 ```bash
-bun run test
+./test.sh
 ```
 
 ---
@@ -52,7 +52,7 @@ bun run test
 ### Building
 
 ```bash
-bun run build
+./build.sh
 ```
 
 ---
