@@ -2,12 +2,16 @@
 
 clear
 
-# ! NOTE: Using NPM because Bun does not include README.md in metadata for Verdaccio
-
 npm unpublish --force
 
-npm version --no-git-tag-version patch
+_version=$(bun --version)
+bun pm pkg set packageManager="bun@$_version"
+bun pm pkg set engines.bun="~$_version"
+
+bun pm version patch --no-git-tag-version
 
 bun run build
 
-npm publish ./dist
+# ! NOTE: Using npm because the following command throws: EISDIR: failed to read tarball: './dist'
+#bun publish ./dist --ignore-scripts
+npm publish ./dist --ignore-scripts

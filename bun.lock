@@ -12,8 +12,8 @@
         "rimraf": "^6.1.3",
       },
       "peerDependencies": {
-        "@postfmly/config": "^1.2.16",
-        "@postfmly/logger": "^1.0.3",
+        "@postfmly/config": "^1.2.17",
+        "@postfmly/logger": "^1.0.5",
       },
     },
   },
@@ -39,9 +39,9 @@
 
     "@biomejs/cli-win32-x64": ["@biomejs/cli-win32-x64@2.4.15", "https://npm.postfmly.com/@biomejs/cli-win32-x64/-/cli-win32-x64-2.4.15.tgz", { "os": "win32", "cpu": "x64" }, "sha512-zBrGq5mx5wwpnow4+2BxUvleDM+GNd4sLbPaMapsSLQLD0NGRCquqPBTgN+7XkUteHvj7M+BstuI8tmnV7+HgQ=="],
 
-    "@postfmly/config": ["@postfmly/config@1.2.16", "https://npm.postfmly.com/@postfmly/config/-/config-1.2.16.tgz", { "peerDependencies": { "@biomejs/biome": "^2.4.15", "@types/bun": "^1.3.13", "@types/node": "^25.6.0", "typescript": "^6.0.3" }, "bin": { "config-init": "bin/init" } }, "sha512-DpllNAJiv3/Y+uJ184LTBCwmVOC0gHefKthgxsxv8HEGDIO7iBuVM/1IdSR1v+FT8RLeHdCNHqV9mrbWg+0rIg=="],
+    "@postfmly/config": ["@postfmly/config@1.2.17", "https://npm.postfmly.com/@postfmly/config/-/config-1.2.17.tgz", { "peerDependencies": { "@biomejs/biome": "^2.4.15", "@types/bun": "^1.3.13", "@types/node": "^25.6.0", "typescript": "^6.0.3" }, "bin": { "config-init": "bin/init" } }, "sha512-ft+Pun2zwe8vyp9uY5f6uwP41PmB3i1WZrqfl2a3daoIwVM5W/gGSmgr8sfStwAs+jbLwQbWciOs3vR1F40wng=="],
 
-    "@postfmly/logger": ["@postfmly/logger@1.0.3", "https://npm.postfmly.com/@postfmly/logger/-/logger-1.0.3.tgz", { "dependencies": { "date-and-time": "^4.5.0" } }, "sha512-zR0YAAnGNvNvHx+YMxHoGl+/7xwznmeiyVvD6wjxvwec4Tw4D7Mf2FBiXNKChhexRLm8kTBNNmOLncPQP6QN6g=="],
+    "@postfmly/logger": ["@postfmly/logger@1.0.5", "https://npm.postfmly.com/@postfmly/logger/-/logger-1.0.5.tgz", { "dependencies": { "date-and-time": "^4.5.0" }, "peerDependencies": { "@postfmly/config": "^1.2.17" } }, "sha512-fKbubuGoYdZfSnpJPfa0r/sISxNDQEtN00CJucwYT0CxBuwQXp4mIIfjcvrxwMww9R83hJnhiFroL67QbPnG4A=="],
 
     "@types/bun": ["@types/bun@1.3.13", "https://npm.postfmly.com/@types/bun/-/bun-1.3.13.tgz", { "dependencies": { "bun-types": "1.3.13" } }, "sha512-9fqXWk5YIHGGnUau9TEi+qdlTYDAnOj+xLCmSTwXfAIqXr2x4tytJb43E9uCvt09zJURKXwAtkoH4nLQfzeTXw=="],
 
