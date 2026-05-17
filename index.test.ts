@@ -8,15 +8,25 @@ describe("index", (): void => {
   test("logo", async (): Promise<void> => {
     await startLogoServer()
     await startLogoServer() // * NOTE: for code coverage
-    const response: Response = await fetch(new Request(`http://localhost:${forTesting!.PORT}${forTesting!.NAME}`))
+    const response: Response = await fetch(new Request(`http://localhost:${forTesting!.PORT}/${forTesting!.LOGO_NAME}`))
     expect(response.status).toBe(status.OK)
     expect(response.headers.get("content-type")).toStartWith("image/")
     await stopLogoServer()
     await stopLogoServer() // * NOTE: for code coverage
   })
 
+  test("logo2", async (): Promise<void> => {
+    await startLogoServer()
+    const response: Response = await fetch(
+      new Request(`http://localhost:${forTesting!.PORT}/${forTesting!.LOGO2_NAME}`)
+    )
+    expect(response.status).toBe(status.OK)
+    expect(response.headers.get("content-type")).toStartWith("image/")
+    await stopLogoServer()
+  })
+
   test("logo - fail", async (): Promise<void> => {
-    const bak: string = Bun.env.LOGO_NAME
+    const bak: string | undefined = Bun.env.LOGO_NAME
     Bun.env.LOGO_NAME = ""
     expect(async (): Promise<void> => await startLogoServer()).toThrowError("Invalid LOGO_NAME")
     Bun.env.LOGO_NAME = bak
@@ -39,9 +49,9 @@ describe("index", (): void => {
   })
 
   test("IPv6", async (): Promise<void> => {
-    const bak: string = Bun.env.LOGO_IPv6
-    Bun.env.LOGO_IPv6 = "true"
+    const bak: string | undefined = Bun.env.LOGO_IPV6
+    Bun.env.LOGO_IPV6 = "true"
     expect(async (): Promise<void> => await startLogoServer()).toThrowError("Failed to listen at ::")
-    Bun.env.LOGO_IPv6 = bak
+    Bun.env.LOGO_IPV6 = bak
   })
 })

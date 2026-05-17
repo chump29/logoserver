@@ -9,6 +9,7 @@
         "http-status": "^2.1.0",
       },
       "devDependencies": {
+        "lcov-total": "^2.1.1",
         "rimraf": "^6.1.3",
       },
       "peerDependencies": {
@@ -60,6 +61,8 @@
     "glob": ["glob@13.0.6", "https://npm.postfmly.com/glob/-/glob-13.0.6.tgz", { "dependencies": { "minimatch": "^10.2.2", "minipass": "^7.1.3", "path-scurry": "^2.0.2" } }, "sha512-Wjlyrolmm8uDpm/ogGyXZXb1Z+Ca2B8NbJwqBVg0axK9GbBeoS7yGV6vjXnYdGm6X53iehEuxxbyiKp8QmN4Vw=="],
 
     "http-status": ["http-status@2.1.0", "https://npm.postfmly.com/http-status/-/http-status-2.1.0.tgz", {}, "sha512-O5kPr7AW7wYd/BBiOezTwnVAnmSNFY+J7hlZD2X5IOxVBetjcHAiTXhzj0gMrnojQlwy+UT1/Y3H3vJ3UlmvLA=="],
+
+    "lcov-total": ["lcov-total@2.1.1", "https://npm.postfmly.com/lcov-total/-/lcov-total-2.1.1.tgz", { "bin": { "lcov-total": "bin/cmd.js" } }, "sha512-PHk0K1N4TVAZErw4uxeinmJnJn3OL7k4C1QK+Cjua4pLKZ8hMiB1ABc2p7NgpNMXo37P97F2UobMkt1//aS72Q=="],
 
     "lru-cache": ["lru-cache@11.3.6", "https://npm.postfmly.com/lru-cache/-/lru-cache-11.3.6.tgz", {}, "sha512-Gf/KoL3C/MlI7Bt0PGI9I+TeTC/I6r/csU58N4BSNc4lppLBeKsOdFYkK+dX0ABDUMJNfCHTyPpzwwO21Awd3A=="],
 

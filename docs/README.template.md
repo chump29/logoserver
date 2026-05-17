@@ -4,11 +4,11 @@
 
 ---
 
-![Biome](https://img.shields.io/badge/Biome-^2.4.15-informational?style=plastic&logo=biome) &nbsp;
-![Bun](https://img.shields.io/badge/Bun-~1.3.14-informational?style=plastic&logo=bun)
+![Biome](https://img.shields.io/badge/Biome-$_biome-informational?style=plastic&logo=biome) &nbsp;
+![Bun](https://img.shields.io/badge/Bun-$_bun-informational?style=plastic&logo=bun)
 
 ![CodeQL](https://github.com/chump29/logoserver/workflows/CodeQL/badge.svg) &nbsp;
-![Coverage](https://img.shields.io/badge/Coverage-100%25-success?style=plastic&logo=jest)
+![Coverage](https://img.shields.io/badge/Coverage-$_coverage%25-success?style=plastic&logo=jest)
 
 ![License](https://img.shields.io/github/license/chump29/logoserver?style=plastic&color=blueviolet&label=License&logo=gplv3)
 

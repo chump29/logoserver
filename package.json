@@ -1,6 +1,6 @@
 {
   "name": "@postfmly/logoserver",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Logo server",
   "keywords": [
     "logo",
@@ -28,7 +28,9 @@
     "build:rm": "rm dist/index.test.d.ts dist/build.d.ts",
     "clean": "rimraf node_modules bun.lock .vscode dist coverage",
     "clean:coverage": "rimraf coverage",
-    "lint": "biome check --write --verbose .",
+    "lint": "bun run lint:biome && bun run lint:env",
+    "lint:biome": "biome check --write --verbose .",
+    "lint:env": "dotenv-linter check .",
     "prepare": "config-init",
     "test": "bun run clean:coverage && bun test --coverage --isolate --coverage-reporter=text --coverage-reporter=lcov"
   },
@@ -40,6 +42,7 @@
     "http-status": "^2.1.0"
   },
   "devDependencies": {
+    "lcov-total": "^2.1.1",
     "rimraf": "^6.1.3"
   },
   "peerDependencies": {

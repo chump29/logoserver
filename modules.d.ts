@@ -1,9 +1,11 @@
 declare module "bun" {
   interface Env {
-    IS_DEBUG: string
-    LOGO_IPv6: string
-    LOGO_NAME: string
-    LOGO_PATH: string
-    LOGO_PORT: string
+    IS_DEBUG: string | undefined
+    LOGO_IPV6: string | undefined
+    LOGO_NAME: string | undefined
+    LOGO_PATH: string | undefined
+    LOGO_PORT: string | undefined
+    LOGO2_NAME: string | undefined
+    LOGO2_PATH: string | undefined
   }
 }
