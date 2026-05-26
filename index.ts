@@ -12,13 +12,7 @@ let LOGO2_NAME: string | undefined = undefined
 
 let PORT: number = 0
 
-interface ITest {
-  LOGO_NAME: string
-  LOGO2_NAME: string
-  PORT: number
-}
-
-let forTesting: ITest | null = null
+let testingPort: number | null = null
 
 const LEADING_SLASH: RegExp = /^\//
 
@@ -57,11 +51,7 @@ const server = async (): Promise<void> => {
   })
 
   if (Bun.env.NODE_ENV === "test") {
-    forTesting = {
-      LOGO_NAME: LOGO_NAME,
-      LOGO2_NAME: LOGO2_NAME,
-      PORT: PORT
-    } as ITest
+    testingPort = PORT
   }
 }
 
@@ -91,4 +81,4 @@ const stopLogoServer = async (): Promise<void> => {
   }
 }
 
-export { forTesting, startLogoServer, stopLogoServer }
+export { startLogoServer, stopLogoServer, testingPort }

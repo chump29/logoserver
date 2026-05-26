@@ -1,10 +1,8 @@
-// biome-ignore-all lint/suspicious/noConsole: using console output w/o formatting
-
 import { exit } from "node:process"
 
 import { type BuildMetafile, type BuildOutput, build } from "bun"
 
-import { error } from "@postfmly/logger"
+import { error, info } from "@postfmly/logger"
 
 import { devDependencies, peerDependencies } from "./package.json" with { type: "json" }
 
@@ -33,10 +31,10 @@ await build({
   })
   .then(async (metafile: BuildMetafile | undefined): Promise<void> => {
     if (metafile?.outputs) {
-      for (const [path, output] of Object.entries(metafile.outputs)) {
-        console.log(`${path}: ${output.bytes} bytes`)
-        for (const [inputPath, info] of Object.entries(output.inputs)) {
-          console.log(`  - ${inputPath}: ${info.bytesInOutput} bytes`)
+      for (const [path, bytes] of Object.entries(metafile.outputs)) {
+        info(`${path}: ${bytes.bytes} bytes`)
+        for (const [s, bytesInOutput] of Object.entries(bytes.inputs)) {
+          info(`  - ${s}: ${bytesInOutput.bytesInOutput} bytes`)
         }
       }
     }

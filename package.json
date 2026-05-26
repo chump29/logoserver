@@ -1,6 +1,6 @@
 {
   "name": "@postfmly/logoserver",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Logo server",
   "keywords": [
     "logo",
@@ -25,13 +25,13 @@
     "build:clean": "rimraf dist",
     "build:copy": "cp -f LICENSE package.json README.md dist/",
     "build:dts": "bunx tsc --declaration --emitDeclarationOnly --outDir dist --noEmit false --skipLibCheck",
-    "build:rm": "rm dist/index.test.d.ts dist/build.d.ts",
-    "clean": "rimraf node_modules bun.lock .vscode dist coverage",
+    "build:rm": "rm dist/build.d.ts",
+    "clean": "rimraf bun.lock .vscode dist coverage",
     "clean:coverage": "rimraf coverage",
     "lint": "bun run lint:biome && bun run lint:env",
     "lint:biome": "biome check --write --verbose .",
     "lint:env": "dotenv-linter check .",
-    "prepare": "config-init",
+    "prepare": "link-configs",
     "test": "bun run clean:coverage && bun test --coverage --isolate --coverage-reporter=text --coverage-reporter=lcov"
   },
   "overrides": {
@@ -42,12 +42,15 @@
     "http-status": "^2.1.0"
   },
   "devDependencies": {
+    "@types/ms": "^2.1.0",
     "lcov-total": "^2.1.1",
-    "rimraf": "^6.1.3"
+    "ms": "^2.1.3",
+    "rimraf": "^6.1.3",
+    "valibot": "^1.4.1"
   },
   "peerDependencies": {
-    "@postfmly/config": "^1.2.17",
-    "@postfmly/logger": "^1.0.5"
+    "@postfmly/config": "^1.3.0",
+    "@postfmly/logger": "^1.0.12"
   },
   "packageManager": "bun@1.3.14",
   "engines": {
