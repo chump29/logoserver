@@ -1,6 +1,6 @@
 {
   "name": "@postfmly/logoserver",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Logo server",
   "keywords": [
     "logo",
@@ -25,7 +25,7 @@
     "build:clean": "rimraf dist",
     "build:copy": "cp -f LICENSE package.json README.md dist/",
     "build:dts": "bunx tsc --declaration --emitDeclarationOnly --outDir dist --noEmit false --skipLibCheck",
-    "build:rm": "rm dist/build.d.ts",
+    "build:rm": "rimraf dist/build.d.ts dist/test",
     "clean": "rimraf bun.lock .vscode dist coverage",
     "clean:coverage": "rimraf coverage",
     "lint": "bun run lint:biome && bun run lint:env",

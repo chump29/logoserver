@@ -1,6 +1,6 @@
 # @postfmly/logoserver
 
-> - Logo server
+### Logo server <!-- markdownlint-disable MD001 -->
 
 ---
 
@@ -14,11 +14,13 @@
 
 ---
 
-### Installation <!-- markdownlint-disable MD001 -->
+### Installation
 
 ```bash
 bun add @postfmly/logoserver
 ```
+
+---
 
 ### Use
 
@@ -69,11 +71,11 @@ bun run test
 
 #### Package:
 
-- *NOTE: Includes linting, testing, and building README*
-
 ```bash
 ./build.sh
 ```
+
+###### *NOTE: Includes linting, testing, and building README*
 
 ---
 
@@ -85,11 +87,11 @@ bun run test
 ./publish.sh
 ```
 
-- *NOTES:*
+###### *NOTES:*
 
-  - *Includes building package*
+- ###### *Includes building package*
 
-  - *Increments `patch` version in `package.json`*
+- ###### *Increments `patch` version in `package.json`*
 
 #### Unpublish:
 
