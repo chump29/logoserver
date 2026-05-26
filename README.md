@@ -25,10 +25,10 @@ bun add @postfmly/logoserver
 ### Use
 
 ```ts
-import { logoServer } from "@postfmly/logoserver"
+import { startLogoServer, stopLogoServer } from "@postfmly/logoserver"
 
-await logoServer.start()
-await logoServer.stop()
+await startLogoServer()
+await stopLogoServer()
 ```
 
 ### Environment Variables

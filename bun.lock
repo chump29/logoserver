@@ -16,8 +16,8 @@
         "valibot": "^1.4.1",
       },
       "peerDependencies": {
-        "@postfmly/config": "^1.3.0",
-        "@postfmly/logger": "^1.0.12",
+        "@postfmly/config": "^1.3.1",
+        "@postfmly/logger": "^1.0.13",
       },
     },
   },
@@ -43,9 +43,9 @@
 
     "@biomejs/cli-win32-x64": ["@biomejs/cli-win32-x64@2.4.15", "https://npm.postfmly.com/@biomejs/cli-win32-x64/-/cli-win32-x64-2.4.15.tgz", { "os": "win32", "cpu": "x64" }, "sha512-zBrGq5mx5wwpnow4+2BxUvleDM+GNd4sLbPaMapsSLQLD0NGRCquqPBTgN+7XkUteHvj7M+BstuI8tmnV7+HgQ=="],
 
-    "@postfmly/config": ["@postfmly/config@1.3.0", "https://npm.postfmly.com/@postfmly/config/-/config-1.3.0.tgz", { "peerDependencies": { "@biomejs/biome": "^2.4.15", "@types/bun": "^1.3.14", "@types/node": "^25.9.1", "globals": "^17.6.0", "typescript": "^6.0.3" }, "bin": { "link-configs": "bin/link", "mount-node-modules": "bin/node_modules" } }, "sha512-LsOiTymzqqPdgvi53ns7sciGTpCBoZlM79nYSfHZLuO4DYdJWkHR7hEWieJMne7Q0RB3UFTqwQ4Hgkmf4BKWIw=="],
+    "@postfmly/config": ["@postfmly/config@1.3.1", "https://npm.postfmly.com/@postfmly/config/-/config-1.3.1.tgz", { "peerDependencies": { "@biomejs/biome": "^2.4.15", "@types/bun": "^1.3.14", "@types/node": "^25.9.1", "globals": "^17.6.0", "typescript": "^6.0.3" }, "bin": { "link-configs": "bin/link" } }, "sha512-cBUXNBEIBimin1dke7RvI9+VBjzOyH9eUu4Y6K89P0typKW/csb1nI0eYO2qjPGFkgQAiBp2sgeflYTLOqZa4w=="],
 
-    "@postfmly/logger": ["@postfmly/logger@1.0.12", "https://npm.postfmly.com/@postfmly/logger/-/logger-1.0.12.tgz", { "dependencies": { "browser-or-node": "^3.0.0", "dayjs": "^1.11.21", "picocolors": "^1.1.1" }, "peerDependencies": { "@postfmly/config": "^1.3.0" } }, "sha512-e+/malqcDTiIYudt/2b3W0pVfInbT8CmwwGl0Ss92mn9BFGzTnQeFxIgnl4PYy74gWGHtb+y09GSNzm8CZySKA=="],
+    "@postfmly/logger": ["@postfmly/logger@1.0.13", "https://npm.postfmly.com/@postfmly/logger/-/logger-1.0.13.tgz", { "dependencies": { "browser-or-node": "^3.0.0", "dayjs": "^1.11.21", "picocolors": "^1.1.1" }, "peerDependencies": { "@postfmly/config": "^1.3.1" } }, "sha512-LcVPGammLeodIBHprMsOI5P5lBshihvt21MM9oM3FeP7qyKM2yDdTyukSYhdBeJ/auh5/vvQ3prrLddf+k169A=="],
 
     "@types/bun": ["@types/bun@1.3.14", "https://npm.postfmly.com/@types/bun/-/bun-1.3.14.tgz", { "dependencies": { "bun-types": "1.3.14" } }, "sha512-h1hFqFVcvAvD9j9K7ZW7vd82aSA+rTdznZa+5bwvCwqSB1jmmfLcbIWhOLx1/+boy/xmjgCs/OMUL8hRJSmnPw=="],
 
