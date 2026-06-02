@@ -4,8 +4,8 @@ clear
 
 npm unpublish --force || :
 
-./build.sh
-
 bun pm version patch --no-git-tag-version
+
+./build.sh
 
 npm publish ./dist --ignore-scripts
