@@ -44,7 +44,6 @@
   },
   "devDependencies": {
     "@types/ms": "^2.1.0",
-    "bun-scan": "^1.1.2",
     "cspell": "^10.0.1",
     "lcov-total": "^2.1.1",
     "ms": "^2.1.3",
