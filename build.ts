@@ -3,33 +3,29 @@ import { exit } from "node:process"
 import { type BuildMetafile, type BuildOutput, build } from "bun"
 
 import { error, info } from "@postfmly/logger"
+import { type Optional } from "@postfmly/types"
 
 import { devDependencies, peerDependencies } from "./package.json" with { type: "json" }
 
-const externalDependencies: string[] = [
-  ...Object.keys(devDependencies),
-  ...Object.keys(peerDependencies)
-]
+const externalDependencies: string[] = [...Object.keys(devDependencies), ...Object.keys(peerDependencies)]
 
 await build({
+  entrypoints: ["./index.ts"],
   external: externalDependencies,
   footer: "// ♡ ᓚᘏᗢ ♡",
   metafile: true,
   minify: true,
   outdir: "./dist",
-  target: "bun",
-  entrypoints: [
-    "./index.ts"
-  ]
+  target: "bun"
 })
-  .then((result: BuildOutput): BuildMetafile | undefined => {
+  .then((result: BuildOutput): Optional<BuildMetafile> => {
     if (!result.success) {
       error("Build failed", result.logs)
       exit(1)
     }
     return result.metafile
   })
-  .then(async (metafile: BuildMetafile | undefined): Promise<void> => {
+  .then((metafile: Optional<BuildMetafile>): void => {
     if (metafile?.outputs) {
       for (const [path, bytes] of Object.entries(metafile.outputs)) {
         info(`${path}: ${bytes.bytes} bytes`)

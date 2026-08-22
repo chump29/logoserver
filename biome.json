@@ -1,5 +1,3 @@
 {
-  "extends": [
-    "@postfmly/config/biome.json"
-  ]
+  "extends": ["@postfmly/config/biome.json"]
 }
