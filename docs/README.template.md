@@ -32,15 +32,17 @@ await stopLogoServer()
 
 ### Environment Variables
 
-|    Description    |    Key     |       Value       |
-|:-----------------:|:----------:|:-----------------:|
-|       Debug       |  IS_DEBUG  |  true/**false**   |
-|     IPv4/IPv6     | LOGO_IPV6  |  true/**false**   |
-|     Logo Name     | LOGO_NAME  |    [filename]     |
-|  Logo Local Path  | LOGO_PATH  |      [path]       |
-|       Port        | LOGO_PORT  | **Random**/[port] |
-|    Logo 2 Name    | LOGO2_NAME |    [filename]     |
-| Logo 2 Local Path | LOGO2_PATH |      [path]       |
+|      Description      |    Key     |       Value       |
+|:---------------------:|:----------:|:-----------------:|
+|         Debug         |   DEBUG    |  true/**false**   |
+|       IPv4/IPv6       | LOGO_IPV6  |  true/**false**   |
+| Logo Name<sup>1</sup> | LOGO_NAME  |    [filename]     |
+|    Logo Local Path    | LOGO_PATH  |      [path]       |
+|         Port          | LOGO_PORT  | **random**/[port] |
+|      Logo 2 Name      | LOGO2_NAME |    [filename]     |
+|   Logo 2 Local Path   | LOGO2_PATH |      [path]       |
+
+###### <sup>1</sup> Required
 
 ---
 

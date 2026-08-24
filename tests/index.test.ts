@@ -3,8 +3,11 @@ import { beforeAll, describe, expect, type jest, spyOn, test } from "bun:test"
 import { status } from "http-status"
 import { default as ms } from "ms"
 
-import { env } from "../env.config.ts"
+import { default as env } from "../env.config.ts"
 import { startLogoServer, stopLogoServer, testingPort } from "../index.ts"
+
+// biome-ignore lint/nursery/useExplicitType: narrowed
+const { LOGO_NAME, LOGO_PATH, LOGO2_NAME, LOGO2_PATH } = env
 
 const infoSpy: jest.Mock = spyOn(console, "info")
 
@@ -24,12 +27,12 @@ describe("index", (): void => {
   }
 
   test("logo", async (): Promise<void> => {
-    await getImage(`${env.LOGO_PATH}/${env.LOGO_NAME}`)
-    await getImage(`${env.LOGO2_PATH}/${env.LOGO2_NAME}`)
+    await getImage(`${LOGO_PATH}/${LOGO_NAME}`)
+    await getImage(`${LOGO2_PATH}/${LOGO2_NAME}`)
 
     await startLogoServer()
     await startLogoServer() // for coverage
-    const response: Response = await fetch(new Request(`http://localhost:${testingPort}/${env.LOGO_NAME}`))
+    const response: Response = await fetch(new Request(`http://localhost:${testingPort}/${LOGO_NAME}`))
     expect(response.status).toBe(status.OK)
     expect(response.headers.get("content-type")).toStartWith("image/")
     await stopLogoServer()
@@ -38,7 +41,7 @@ describe("index", (): void => {
 
   test("logo2", async (): Promise<void> => {
     await startLogoServer()
-    const response: Response = await fetch(new Request(`http://localhost:${testingPort}/${env.LOGO2_NAME}`))
+    const response: Response = await fetch(new Request(`http://localhost:${testingPort}/${LOGO2_NAME}`))
     expect(response.status).toBe(status.OK)
     expect(response.headers.get("content-type")).toStartWith("image/")
     await stopLogoServer()

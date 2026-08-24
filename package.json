@@ -27,7 +27,9 @@
     "build:dts": "bun run --bun tsc --declaration --emitDeclarationOnly --outDir dist --noEmit false --skipLibCheck",
     "build:rm": "bun run --bun rimraf dist/build.d.ts dist/tests dist/env.config.d.ts",
     "check": "bunx --bun depcheck --ignores=\"@types/*,bun,bun:*,lcov-total,rimraf\" || :",
-    "clean": "bun run --bun rimraf bun.lock tests/coverage",
+    "check:updates": "bunx --bun npm-check-updates --dep overrides,prod,dev --cooldown 0 --install never --packageManager bun",
+    "env": "bunx --bun @envin/cli dev",
+    "env:test": "bunx --bun @envin/cli dev --env .env .env.test",
     "lint": "bun run scan && bun run lint:spell && bun run lint:biome && bun run lint:env && bun run lint:ts",
     "lint:biome": "bun run --bun biome check --write --verbose --reporter=default --reporter=github --error-on-warnings",
     "lint:ci": "bun run --bun biome check ci --verbose --reporter=default --reporter=github --error-on-warnings",
@@ -44,15 +46,15 @@
     "@biomejs/biome": "2.5.10",
     "@types/bun": "1.4.0",
     "@types/node": "26.2.0",
-    "cspell": "10.0.1",
-    "cve-lite-cli": "1.29.0",
+    "cspell": "10.1.0",
+    "cve-lite-cli": "1.30.0",
     "globals": "17.11.0",
     "typescript": "7.0.2"
   },
   "dependencies": {
     "@marianmeres/parse-boolean": "^2.1.0",
     "@postfmly/logger": "^1.0.28",
-    "@postfmly/types": "^1.0.1",
+    "@postfmly/types": "^1.0.2",
     "envin": "^1.2.0",
     "get-port": "^7.2.0",
     "http-status": "^2.1.0",
@@ -66,7 +68,7 @@
     "valibot": "^1.4.2"
   },
   "peerDependencies": {
-    "@postfmly/config": "^1.4.50"
+    "@postfmly/config": "^1.4.52"
   },
   "packageManager": "bun@1.4.0",
   "engines": {

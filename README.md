@@ -7,7 +7,7 @@
 ![Bun](https://img.shields.io/badge/Bun-~1.4.0-informational?style=plastic&logo=bun "Bun")
 
 ![CodeQL](https://github.com/chump29/logoserver/workflows/CodeQL/badge.svg "CodeQL") &nbsp;
-![Coverage](https://img.shields.io/badge/Coverage-97.7%25-success?style=plastic&logo=jest "Coverage")
+![Coverage](https://img.shields.io/badge/Coverage-97.78%25-success?style=plastic&logo=jest "Coverage")
 
 ![License](https://img.shields.io/github/license/chump29/logoserver?style=plastic&color=blueviolet&label=License&logo=gplv3 "GPLv3")
 
@@ -32,15 +32,17 @@ await stopLogoServer()
 
 ### Environment Variables
 
-|    Description    |    Key     |       Value       |
-|:-----------------:|:----------:|:-----------------:|
-|       Debug       |  IS_DEBUG  |  true/**false**   |
-|     IPv4/IPv6     | LOGO_IPV6  |  true/**false**   |
-|     Logo Name     | LOGO_NAME  |    [filename]     |
-|  Logo Local Path  | LOGO_PATH  |      [path]       |
-|       Port        | LOGO_PORT  | **Random**/[port] |
-|    Logo 2 Name    | LOGO2_NAME |    [filename]     |
-| Logo 2 Local Path | LOGO2_PATH |      [path]       |
+|      Description      |    Key     |       Value       |
+|:---------------------:|:----------:|:-----------------:|
+|         Debug         |   DEBUG    |  true/**false**   |
+|       IPv4/IPv6       | LOGO_IPV6  |  true/**false**   |
+| Logo Name<sup>1</sup> | LOGO_NAME  |    [filename]     |
+|    Logo Local Path    | LOGO_PATH  |      [path]       |
+|         Port          | LOGO_PORT  | **random**/[port] |
+|      Logo 2 Name      | LOGO2_NAME |    [filename]     |
+|   Logo 2 Local Path   | LOGO2_PATH |      [path]       |
+
+###### <sup>1</sup> Required
 
 ---
 

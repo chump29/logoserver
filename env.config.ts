@@ -9,7 +9,6 @@ import {
   maxValue,
   minValue,
   nonEmpty,
-  optional,
   pipe,
   string,
   toLowerCase,
@@ -38,16 +37,20 @@ const PortSchema = fallback(
 )
 
 // biome-ignore lint/suspicious/noExplicitAny: to happily generate d.ts
-export const env: any = defineEnv({
+const env: any = defineEnv({
   env: process.env,
   server: {
-    IS_DEBUG: BooleanSchema,
-    LOGO_IPV6: BooleanSchema,
-    LOGO_NAME: fallback(StringSchema, nanoid()), // not empty
-    LOGO_PATH: fallback(StringSchema, ""),
-    LOGO_PORT: PortSchema,
+    DEBUG: fallback(BooleanSchema, false),
+    LOGO_IPV6: fallback(BooleanSchema, false),
+    LOGO_NAME: StringSchema,
+    LOGO_PATH: fallback(StringSchema, "."),
+    LOGO_PORT: fallback(PortSchema, "random"),
     LOGO2_NAME: fallback(StringSchema, nanoid()), // not empty
-    LOGO2_PATH: fallback(StringSchema, ""),
-    NODE_ENV: optional(StringSchema)
+    LOGO2_PATH: fallback(StringSchema, ".")
+  },
+  shared: {
+    NODE_ENV: fallback(StringSchema, "development")
   }
 })
+
+export default env
