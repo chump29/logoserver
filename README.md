@@ -4,10 +4,10 @@
 
 ---
 
-![Bun](https://img.shields.io/badge/Bun-~1.4.0-informational?style=plastic&logo=bun "Bun")
+![Bun](https://img.shields.io/badge/Bun-^1.4.0-informational?style=plastic&logo=bun "Bun")
 
 ![CodeQL](https://github.com/chump29/logoserver/workflows/CodeQL/badge.svg "CodeQL") &nbsp;
-![Coverage](https://img.shields.io/badge/Coverage-97.78%25-success?style=plastic&logo=jest "Coverage")
+![Coverage](https://img.shields.io/badge/Coverage-100%25-success?style=plastic&logo=jest "Coverage")
 
 ![License](https://img.shields.io/github/license/chump29/logoserver?style=plastic&color=blueviolet&label=License&logo=gplv3 "GPLv3")
 
@@ -24,10 +24,12 @@ bun add @postfmly/logoserver
 ### Use
 
 ```ts
-import { startLogoServer, stopLogoServer } from "@postfmly/logoserver"
+import { type ILogoServerConfig, LogoServer } from "@postfmly/logoserver"
 
-await startLogoServer()
-await stopLogoServer()
+const logoServer: LogoServer = new LogoServer({ LOGO_NAME: "foo.png" } as ILogoServerConfig)
+
+await logoServer.start()
+await logoServer.stop()
 ```
 
 ### Environment Variables
@@ -57,7 +59,14 @@ bun run lint
 ### Testing
 
 ```bash
+# Tests only
 bun run test
+
+# Tests w/Coverage
+bun run test:coverage
+
+# Tests w/Coverage (Verbose)
+bun run test:coverage:full
 ```
 
 ---

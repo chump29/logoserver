@@ -24,10 +24,12 @@ bun add @postfmly/logoserver
 ### Use
 
 ```ts
-import { startLogoServer, stopLogoServer } from "@postfmly/logoserver"
+import { type ILogoServerConfig, LogoServer } from "@postfmly/logoserver"
 
-await startLogoServer()
-await stopLogoServer()
+const logoServer: LogoServer = new LogoServer({ LOGO_NAME: "foo.png" } as ILogoServerConfig)
+
+await logoServer.start()
+await logoServer.stop()
 ```
 
 ### Environment Variables
@@ -57,7 +59,14 @@ bun run lint
 ### Testing
 
 ```bash
+# Tests only
 bun run test
+
+# Tests w/Coverage
+bun run test:coverage
+
+# Tests w/Coverage (Verbose)
+bun run test:coverage:full
 ```
 
 ---
