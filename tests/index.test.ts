@@ -4,7 +4,13 @@ import { status } from "http-status"
 
 import { type ILogoServerConfig, LogoServer, testingPort } from "../index.ts"
 
-const logoServer: LogoServer = new LogoServer({} as ILogoServerConfig)
+const logoServer: LogoServer = new LogoServer({
+  DEBUG: Bun.env.DEBUG,
+  LOGO_NAME: Bun.env.LOGO_NAME,
+  LOGO_PATH: Bun.env.LOGO_PATH,
+  LOGO2_NAME: Bun.env.LOGO2_NAME,
+  LOGO2_PATH: Bun.env.LOGO2_PATH
+} as ILogoServerConfig)
 
 const infoSpy: jest.Mock = spyOn(console, "info")
 

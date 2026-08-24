@@ -68,16 +68,16 @@ class LogoServer implements ILogoServerConfig {
   }
 
   constructor(config: ILogoServerConfig = {} as ILogoServerConfig) {
-    this.DEBUG = parse(optional(BooleanSchema, false), Bun.env.DEBUG ?? config.DEBUG)
-    this.LOGO_IPV6 = parse(optional(BooleanSchema, false), Bun.env.LOGO_IPV6 ?? config.LOGO_IPV6)
-    this.LOGO_NAME = parse(pipe(string("Invalid LOGO_NAME"), trim(), nonEmpty()), Bun.env.LOGO_NAME ?? config.LOGO_NAME)
-    this.LOGO_PATH = parse(optional(StringSchema, "."), Bun.env.LOGO_PATH ?? config.LOGO_PATH)
+    this.DEBUG = parse(optional(BooleanSchema, false), config.DEBUG)
+    this.LOGO_IPV6 = parse(optional(BooleanSchema, false), config.LOGO_IPV6)
+    this.LOGO_NAME = parse(pipe(string("Invalid LOGO_NAME"), trim(), nonEmpty()), config.LOGO_NAME)
+    this.LOGO_PATH = parse(optional(StringSchema, "."), config.LOGO_PATH)
     this.LOGO_PORT = parse(
       optional(union([pipe(number(), integer(), gtValue(MIN_PORT), ltValue(MAX_PORT)), literal("random")]), "random"),
-      Bun.env.LOGO_PORT ?? config.LOGO_PORT
+      config.LOGO_PORT
     )
-    this.LOGO2_NAME = parse(optional(StringSchema, nanoid()), Bun.env.LOGO2_NAME ?? config.LOGO2_NAME)
-    this.LOGO2_PATH = parse(optional(StringSchema, "."), Bun.env.LOGO2_PATH ?? config.LOGO2_PATH)
+    this.LOGO2_NAME = parse(optional(StringSchema, nanoid()), config.LOGO2_NAME)
+    this.LOGO2_PATH = parse(optional(StringSchema, "."), config.LOGO2_PATH)
   }
 
   private readonly server = async (): Promise<void> => {
