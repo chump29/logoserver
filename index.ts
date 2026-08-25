@@ -56,7 +56,7 @@ class LogoServer implements ILogoServerConfig {
   readonly LOGO_IPV6: Optional<boolean>
   readonly LOGO_NAME: string
   readonly LOGO_PATH: Optional<string>
-  readonly LOGO_PORT: Optional<number | "random">
+  readonly LOGO_PORT: Optional<"random" | number>
   readonly LOGO2_NAME: Optional<string>
   readonly LOGO2_PATH: Optional<string>
 
@@ -73,7 +73,7 @@ class LogoServer implements ILogoServerConfig {
     this.LOGO_NAME = parse(pipe(string("Invalid LOGO_NAME"), trim(), nonEmpty()), config.LOGO_NAME)
     this.LOGO_PATH = parse(optional(StringSchema, "."), config.LOGO_PATH)
     this.LOGO_PORT = parse(
-      optional(union([pipe(number(), integer(), gtValue(MIN_PORT), ltValue(MAX_PORT)), literal("random")]), "random"),
+      optional(union([literal("random"), pipe(number(), integer(), gtValue(MIN_PORT), ltValue(MAX_PORT))]), "random"),
       config.LOGO_PORT
     )
     this.LOGO2_NAME = parse(optional(StringSchema, nanoid()), config.LOGO2_NAME)
@@ -94,7 +94,6 @@ class LogoServer implements ILogoServerConfig {
           })
 
     SERVER = serve({
-      development: Bun.env.NODE_ENV !== "production",
       port: PORT,
       routes: {
         [`/${this.LOGO_NAME}`]: new Response(file(this.logo)),
@@ -117,7 +116,7 @@ class LogoServer implements ILogoServerConfig {
 
       if (this.DEBUG) {
         info(`Logo server started on port ${PORT}`)
-        info(`• Routing for: ${[this.LOGO2_PATH + this.LOGO_NAME, this.LOGO2_NAME].join(",")}`)
+        info(`• Routing for: ${[this.LOGO_NAME, this.LOGO2_NAME].join(",")}`)
       }
     } else if (this.DEBUG) {
       info("Logo server already started")
