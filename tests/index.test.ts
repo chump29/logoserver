@@ -19,20 +19,7 @@ beforeAll((): void => {
 })
 
 describe("index", (): void => {
-  const getImage = async (fileName: string): Promise<void> => {
-    if (!fileName.endsWith(".webp")) {
-      return
-    }
-
-    await fetch("https://picsum.photos/64.webp").then(
-      async (response: Response): Promise<number> => await Bun.write(fileName, await response.blob())
-    )
-  }
-
   test("logo", async (): Promise<void> => {
-    await getImage(`${Bun.env.LOGO_PATH}/${Bun.env.LOGO_NAME}`)
-    await getImage(`${Bun.env.LOGO2_PATH}/${Bun.env.LOGO2_NAME}`)
-
     await logoServer.start()
     await logoServer.start() // for coverage
     const response: Response = await fetch(new Request(`http://localhost:${testingPort}/${Bun.env.LOGO_NAME}`))
