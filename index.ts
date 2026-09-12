@@ -115,11 +115,11 @@ class LogoServer implements ILogoServerConfig {
       await this.server()
 
       if (this.DEBUG) {
-        info(`Logo server started on port ${PORT}`)
-        info(`• Routing for: ${[this.LOGO_NAME, this.LOGO2_NAME].join(",")}`)
+        info(`🟢 Logo server started on port ${PORT}`)
+        info(`⤷ Routing for: ${[this.LOGO_NAME, this.LOGO2_NAME].join(",")}`)
       }
     } else if (this.DEBUG) {
-      info("Logo server already started")
+      info("⚠️  Logo server already started")
     }
   }
 
@@ -130,10 +130,10 @@ class LogoServer implements ILogoServerConfig {
       SERVER = null
 
       if (this.DEBUG) {
-        info("Logo server stopped")
+        info("🔴 Logo server stopped")
       }
     } else if (this.DEBUG) {
-      info("Logo server already stopped")
+      info("⚠️  Logo server already stopped")
     }
   }
 }
