@@ -4,7 +4,7 @@
 
 ---
 
-![Bun](https://img.shields.io/badge/Bun-^1.4.0-informational?style=plastic&logo=bun "Bun")
+![Bun](https://img.shields.io/badge/Bun-^1.4.2-informational?style=plastic&logo=bun "Bun")
 
 ![CodeQL](https://github.com/chump29/logoserver/workflows/CodeQL/badge.svg "CodeQL") &nbsp;
 ![Coverage](https://img.shields.io/badge/Coverage-100%25-success?style=plastic&logo=jest "Coverage")

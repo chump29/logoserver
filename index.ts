@@ -49,7 +49,7 @@ let PORT: number = 0
 
 let testingPort: Nullable<number> = null
 
-const ext: string[] = [".png", ".webp", ".jpg", ".jpeg"]
+const ext: string[] = [".png", ".webp", ".jpg", ".jpeg", ".gif"]
 
 class LogoServer implements ILogoServerConfig {
   readonly DEBUG: Optional<boolean>

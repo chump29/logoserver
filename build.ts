@@ -2,7 +2,7 @@ import { exit } from "node:process"
 
 import { type BuildMetafile, type BuildOutput, build } from "bun"
 
-import { error, info } from "@postfmly/logger"
+import { error } from "@postfmly/logger"
 import { type Optional } from "@postfmly/types"
 
 import { devDependencies, peerDependencies } from "./package.json" with { type: "json" }
@@ -28,9 +28,9 @@ await build({
   .then((metafile: Optional<BuildMetafile>): void => {
     if (metafile?.outputs) {
       for (const [path, bytes] of Object.entries(metafile.outputs)) {
-        info(`${path}: ${bytes.bytes} bytes`)
+        console.info(`${path}: ${bytes.bytes} bytes`)
         for (const [s, bytesInOutput] of Object.entries(bytes.inputs)) {
-          info(`  - ${s}: ${bytesInOutput.bytesInOutput} bytes`)
+          console.info(`  - ${s}: ${bytesInOutput.bytesInOutput} bytes`)
         }
       }
     }
