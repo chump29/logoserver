@@ -116,7 +116,7 @@ class LogoServer implements ILogoServerConfig {
 
       if (this.DEBUG) {
         info(`🟢 Logo server started on port ${PORT}`)
-        console.info(`⤷ Routing for: ${[this.LOGO_NAME, this.LOGO2_NAME].join(",")}`)
+        console.info(` ⤷ Routing for: ${[this.LOGO_NAME, this.LOGO2_NAME].join(",")}`)
       }
     } else if (this.DEBUG) {
       info("⚠️  Logo server already started")
