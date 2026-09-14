@@ -34,17 +34,17 @@ await logoServer.stop()
 
 ### Environment Variables
 
-|      Description      |    Key     |       Value       |
-|:---------------------:|:----------:|:-----------------:|
-|         Debug         |   DEBUG    |  true/**false**   |
-|       IPv4/IPv6       | LOGO_IPV6  |  true/**false**   |
-| Logo Name<sup>1</sup> | LOGO_NAME  |    [filename]     |
-|    Logo Local Path    | LOGO_PATH  |      [path]       |
-|         Port          | LOGO_PORT  | **random**/[port] |
-|      Logo 2 Name      | LOGO2_NAME |    [filename]     |
-|   Logo 2 Local Path   | LOGO2_PATH |      [path]       |
+|       Description       |    Key     |       Value       |
+|:-----------------------:|:----------:|:-----------------:|
+|          Debug          |   DEBUG    |  true/**false**   |
+|        IPv4/IPv6        | LOGO_IPV6  |  true/**false**   |
+|  Logo Name<sup>1<sup>   | LOGO_NAME  |    \<filename>    |
+|     Logo Local Path     | LOGO_PATH  |        "."        |
+|          Port           | LOGO_PORT  | **random**/[port] |
+| Logo 2 Name<sup>1</sup> | LOGO2_NAME |    [filename]     |
+|    Logo 2 Local Path    | LOGO2_PATH |        "."        |
 
-###### <sup>1</sup> Required
+###### <sup>1</sup> Supports PNG, WEBP, JPG/JPEG, GIF
 
 ---
 
@@ -62,10 +62,13 @@ bun run lint
 # Tests only
 bun run test
 
+# Test only (verbose)
+bun run test:full
+
 # Tests w/Coverage
 bun run test:coverage
 
-# Tests w/Coverage (Verbose)
+# Tests w/Coverage (verbose)
 bun run test:coverage:full
 ```
 

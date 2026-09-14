@@ -1,7 +1,5 @@
 import { beforeAll, describe, expect, type jest, spyOn, test } from "bun:test"
 
-import { status } from "http-status"
-
 import { type ILogoServerConfig, LogoServer, testingPort } from "../index.ts"
 
 const logoServer: LogoServer = new LogoServer({
@@ -14,6 +12,13 @@ const logoServer: LogoServer = new LogoServer({
 
 const infoSpy: jest.Mock = spyOn(console, "info")
 
+const status = {
+  404: "Not Found",
+  NO_CONTENT: 204,
+  NOT_FOUND: 404,
+  OK: 200
+} as const
+
 beforeAll((): void => {
   infoSpy.mockReset() // suppress
 })
@@ -25,6 +30,7 @@ describe("index", (): void => {
     const response: Response = await fetch(new Request(`http://localhost:${testingPort}/${Bun.env.LOGO_NAME}`))
     expect(response.status).toBe(status.OK)
     expect(response.headers.get("content-type")).toStartWith("image/")
+    expect(response.headers.get("content-security-policy")?.length ?? 0).toBeGreaterThan(0) // for nosecone
     await logoServer.stop()
     await logoServer.stop() // for coverage
   })

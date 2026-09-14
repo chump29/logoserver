@@ -3,10 +3,8 @@ import { file, type Server, serve } from "bun"
 import { info } from "@postfmly/logger"
 import { type Nullable, type Optional } from "@postfmly/types"
 
-import { parseBoolean } from "@marianmeres/parse-boolean"
 import { default as getPort } from "get-port"
-import { status } from "http-status"
-import { nanoid } from "nanoid"
+import { default as nosecone } from "nosecone"
 import {
   gtValue,
   integer,
@@ -18,7 +16,7 @@ import {
   parse,
   pipe,
   string,
-  transform,
+  toBoolean,
   trim,
   union,
   unknown
@@ -34,10 +32,7 @@ interface ILogoServerConfig {
   readonly LOGO2_PATH: Optional<string>
 }
 
-const BooleanSchema = pipe(
-  unknown(),
-  transform((u: unknown): boolean => parseBoolean(u))
-)
+const BooleanSchema = pipe(unknown(), toBoolean())
 const StringSchema = pipe(string(), trim(), nonEmpty())
 
 const MIN_PORT: number = 1024
@@ -47,9 +42,12 @@ let SERVER: Nullable<Server<undefined>> = null
 
 let PORT: number = 0
 
+/**
+ * For testing only
+ */
 let testingPort: Nullable<number> = null
 
-const ext: string[] = [".png", ".webp", ".jpg", ".jpeg", ".gif"]
+const ext: string[] = [".png", ".webp", ".jpg", ".jpeg", ".gif"] as const
 
 class LogoServer implements ILogoServerConfig {
   readonly DEBUG: Optional<boolean>
@@ -67,16 +65,19 @@ class LogoServer implements ILogoServerConfig {
     return `${this.LOGO2_PATH}/${this.LOGO2_NAME}`
   }
 
-  constructor(config: ILogoServerConfig = {} as ILogoServerConfig) {
+  constructor(config: ILogoServerConfig) {
     this.DEBUG = parse(optional(BooleanSchema, false), config.DEBUG)
     this.LOGO_IPV6 = parse(optional(BooleanSchema, false), config.LOGO_IPV6)
     this.LOGO_NAME = parse(pipe(string("Invalid LOGO_NAME"), trim(), nonEmpty()), config.LOGO_NAME)
     this.LOGO_PATH = parse(optional(StringSchema, "."), config.LOGO_PATH)
     this.LOGO_PORT = parse(
-      optional(union([literal("random"), pipe(number(), integer(), gtValue(MIN_PORT), ltValue(MAX_PORT))]), "random"),
+      optional(
+        union([pipe(StringSchema, literal("random")), pipe(number(), integer(), gtValue(MIN_PORT), ltValue(MAX_PORT))]),
+        "random"
+      ),
       config.LOGO_PORT
     )
-    this.LOGO2_NAME = parse(optional(StringSchema, nanoid()), config.LOGO2_NAME)
+    this.LOGO2_NAME = parse(optional(StringSchema), config.LOGO2_NAME)
     this.LOGO2_PATH = parse(optional(StringSchema, "."), config.LOGO2_PATH)
   }
 
@@ -86,23 +87,36 @@ class LogoServer implements ILogoServerConfig {
       throw new Error("Invalid LOGO_NAME")
     }
 
+    const getHost = (): string => (this.LOGO_IPV6 ? "::" : "0.0.0.0")
+
     PORT =
       typeof this.LOGO_PORT === "number"
         ? (this.LOGO_PORT as number)
         : await getPort({
-            host: this.LOGO_IPV6 ? "::" : "0.0.0.0"
+            host: getHost()
           })
 
+    const getResponse = (body: Nullable<BodyInit>, opt?: ResponseInit): Response =>
+      new Response(body, { ...opt, headers: nosecone() })
+
+    const status = {
+      404: "Not Found",
+      NO_CONTENT: 204,
+      NOT_FOUND: 404
+    } as const
+
+    const routes: Record<string, () => Response> = {}
+    routes[`/${this.LOGO_NAME}`] = (): Response => getResponse(file(this.logo))
+    if (this.LOGO2_NAME) {
+      routes[`/${this.LOGO2_NAME}`] = (): Response => getResponse(file(this.logo2))
+    }
+    routes["/favicon.ico"] = (): Response => getResponse(null, { status: status.NO_CONTENT })
+    routes["/*"] = (): Response => getResponse(status[404], { status: status.NOT_FOUND })
+
     SERVER = serve({
+      hostname: getHost(),
       port: PORT,
-      routes: {
-        [`/${this.LOGO_NAME}`]: new Response(file(this.logo)),
-        [`/${this.LOGO2_NAME}`]: this.LOGO2_NAME
-          ? new Response(file(this.logo2))
-          : new Response(status[418], { status: status.IM_A_TEAPOT }),
-        "/favicon.ico": new Response(null, { status: status.NO_CONTENT }),
-        "/*": (): Response => new Response(status[404], { status: status.NOT_FOUND })
-      }
+      routes
     })
 
     if (Bun.env.NODE_ENV === "test") {
@@ -116,7 +130,7 @@ class LogoServer implements ILogoServerConfig {
 
       if (this.DEBUG) {
         info(`🟢 Logo server started on port ${PORT}`)
-        console.info(` ⤷ Routing for: ${[this.LOGO_NAME, this.LOGO2_NAME].join(",")}`)
+        console.info(` ⤷ Routing for: ${[this.LOGO_NAME, this.LOGO2_NAME].filter(Boolean).join(",")}`)
       }
     } else if (this.DEBUG) {
       info("⚠️  Logo server already started")

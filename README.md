@@ -7,7 +7,7 @@
 ![Bun](https://img.shields.io/badge/Bun-^1.4.2-informational?style=plastic&logo=bun "Bun")
 
 ![CodeQL](https://github.com/chump29/logoserver/workflows/CodeQL/badge.svg "CodeQL") &nbsp;
-![Coverage](https://img.shields.io/badge/Coverage-100%25-success?style=plastic&logo=jest "Coverage")
+![Coverage](https://img.shields.io/badge/Coverage-96.63%25-success?style=plastic&logo=jest "Coverage")
 
 ![License](https://img.shields.io/github/license/chump29/logoserver?style=plastic&color=blueviolet&label=License&logo=gplv3 "GPLv3")
 
@@ -34,17 +34,17 @@ await logoServer.stop()
 
 ### Environment Variables
 
-|      Description      |    Key     |       Value       |
-|:---------------------:|:----------:|:-----------------:|
-|         Debug         |   DEBUG    |  true/**false**   |
-|       IPv4/IPv6       | LOGO_IPV6  |  true/**false**   |
-| Logo Name<sup>1</sup> | LOGO_NAME  |    [filename]     |
-|    Logo Local Path    | LOGO_PATH  |      [path]       |
-|         Port          | LOGO_PORT  | **random**/[port] |
-|      Logo 2 Name      | LOGO2_NAME |    [filename]     |
-|   Logo 2 Local Path   | LOGO2_PATH |      [path]       |
+|       Description       |    Key     |       Value       |
+|:-----------------------:|:----------:|:-----------------:|
+|          Debug          |   DEBUG    |  true/**false**   |
+|        IPv4/IPv6        | LOGO_IPV6  |  true/**false**   |
+|  Logo Name<sup>1<sup>   | LOGO_NAME  |    \<filename>    |
+|     Logo Local Path     | LOGO_PATH  |        "."        |
+|          Port           | LOGO_PORT  | **random**/[port] |
+| Logo 2 Name<sup>1</sup> | LOGO2_NAME |    [filename]     |
+|    Logo 2 Local Path    | LOGO2_PATH |        "."        |
 
-###### <sup>1</sup> Required
+###### <sup>1</sup> Supports PNG, WEBP, JPG/JPEG, GIF
 
 ---
 
@@ -62,10 +62,13 @@ bun run lint
 # Tests only
 bun run test
 
+# Test only (verbose)
+bun run test:full
+
 # Tests w/Coverage
 bun run test:coverage
 
-# Tests w/Coverage (Verbose)
+# Tests w/Coverage (verbose)
 bun run test:coverage:full
 ```
 
