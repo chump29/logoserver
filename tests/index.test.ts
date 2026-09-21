@@ -1,3 +1,6 @@
+import { STATUS_CODES } from "node:http"
+import { constants } from "node:http2"
+
 import { beforeAll, describe, expect, type jest, spyOn, test } from "bun:test"
 
 import { type ILogoServerConfig, LogoServer, testingPort } from "../index.ts"
@@ -12,12 +15,13 @@ const logoServer: LogoServer = new LogoServer({
 
 const infoSpy: jest.Mock = spyOn(console, "info")
 
-const status = {
-  404: "Not Found",
-  NO_CONTENT: 204,
-  NOT_FOUND: 404,
-  OK: 200
-} as const
+const {
+  HTTP_STATUS_NOT_FOUND: NOT_FOUND,
+  HTTP_STATUS_NO_CONTENT: NO_CONTENT,
+  HTTP_STATUS_OK: OK
+}: { HTTP_STATUS_NOT_FOUND: number; HTTP_STATUS_NO_CONTENT: number; HTTP_STATUS_OK: number } = constants
+
+const STR_NOT_FOUND: string = STATUS_CODES[NOT_FOUND] as string
 
 beforeAll((): void => {
   infoSpy.mockReset() // suppress
@@ -28,9 +32,9 @@ describe("index", (): void => {
     await logoServer.start()
     await logoServer.start() // for coverage
     const response: Response = await fetch(new Request(`http://localhost:${testingPort}/${Bun.env.LOGO_NAME}`))
-    expect(response.status).toBe(status.OK)
+    expect(response.status).toBe(OK)
     expect(response.headers.get("content-type")).toStartWith("image/")
-    expect(response.headers.get("content-security-policy")?.length ?? 0).toBeGreaterThan(0) // for nosecone
+    expect(response.headers.get("X-Content-Type-Options")).toBe("nosniff")
     await logoServer.stop()
     await logoServer.stop() // for coverage
   })
@@ -38,7 +42,7 @@ describe("index", (): void => {
   test("logo2", async (): Promise<void> => {
     await logoServer.start()
     const response: Response = await fetch(new Request(`http://localhost:${testingPort}/${Bun.env.LOGO2_NAME}`))
-    expect(response.status).toBe(status.OK)
+    expect(response.status).toBe(OK)
     expect(response.headers.get("content-type")).toStartWith("image/")
     await logoServer.stop()
   })
@@ -46,7 +50,7 @@ describe("index", (): void => {
   test("favicon", async (): Promise<void> => {
     await logoServer.start()
     const response: Response = await fetch(new Request(`http://localhost:${testingPort}/favicon.ico`))
-    expect(response.status).toBe(status.NO_CONTENT)
+    expect(response.status).toBe(NO_CONTENT)
     expect(await response.text()).toBeEmpty()
     await logoServer.stop()
   })
@@ -54,8 +58,8 @@ describe("index", (): void => {
   test("not found", async (): Promise<void> => {
     await logoServer.start()
     const response: Response = await fetch(new Request(`http://localhost:${testingPort}/test`))
-    expect(response.status).toBe(status.NOT_FOUND)
-    expect(await response.text()).toBe(status[404])
+    expect(response.status).toBe(NOT_FOUND)
+    expect(await response.text()).toBe(STR_NOT_FOUND)
     await logoServer.stop()
   })
 })

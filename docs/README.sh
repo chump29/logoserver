@@ -2,9 +2,13 @@
 
 echo -e "📌 Packages:\n"
 
-_bun=$(jq -r '.engines.bun // "❓"' ../package.json)
+_bun=$(bun --version)
 export _bun
 echo -e " • Bun: $_bun"
+
+_hono=$(jq -r '.dependencies.hono // "❓"' ../package.json)
+export _hono
+echo -e " • Hono: $_hono"
 
 echo -e "\n🧪 Running tests…"
 bun run --bun test:coverage

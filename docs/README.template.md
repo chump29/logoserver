@@ -4,7 +4,8 @@
 
 ---
 
-![Bun](https://img.shields.io/badge/Bun-$_bun-informational?style=plastic&logo=bun "Bun")
+![Bun](https://img.shields.io/badge/Bun-$_bun-informational?style=plastic&logo=bun "Bun") &nbsp;
+![Hono](https://img.shields.io/badge/Hono-$_hono-informational?style=plastic&logo=hono "Hono")
 
 ![CodeQL](https://github.com/chump29/logoserver/workflows/CodeQL/badge.svg "CodeQL") &nbsp;
 ![Coverage](https://img.shields.io/badge/Coverage-$_coverage%25-success?style=plastic&logo=jest "Coverage")
@@ -70,6 +71,9 @@ bun run test:coverage
 
 # Tests w/Coverage (verbose)
 bun run test:coverage:full
+
+# Run server
+bun run server # (CTRL-C to stop)
 ```
 
 ---

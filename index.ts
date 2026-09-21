@@ -1,10 +1,17 @@
-import { file, type Server, serve } from "bun"
+import { STATUS_CODES } from "node:http"
+import { constants } from "node:http2"
+
+import { serve } from "bun"
 
 import { info } from "@postfmly/logger"
 import { type Nullable, type Optional } from "@postfmly/types"
 
 import { default as getPort } from "get-port"
-import { default as nosecone } from "nosecone"
+import { type Context } from "hono"
+import { serveStatic } from "hono/bun"
+import { secureHeaders } from "hono/secure-headers"
+import { Hono } from "hono/tiny"
+import { type ClientErrorStatusCode, type SuccessStatusCode } from "hono/utils/http-status"
 import {
   gtValue,
   integer,
@@ -38,7 +45,7 @@ const StringSchema = pipe(string(), trim(), nonEmpty())
 const MIN_PORT: number = 1024
 const MAX_PORT: number = 65_535
 
-let SERVER: Nullable<Server<undefined>> = null
+let SERVER: Nullable<ReturnType<typeof serve>> = null
 
 let PORT: number = 0
 
@@ -48,6 +55,13 @@ let PORT: number = 0
 let testingPort: Nullable<number> = null
 
 const ext: string[] = [".png", ".webp", ".jpg", ".jpeg", ".gif"] as const
+
+const {
+  HTTP_STATUS_NOT_FOUND: NOT_FOUND,
+  HTTP_STATUS_NO_CONTENT: NO_CONTENT
+}: { HTTP_STATUS_NOT_FOUND: number; HTTP_STATUS_NO_CONTENT: number } = constants
+
+const STR_NOT_FOUND: string = STATUS_CODES[NOT_FOUND] as string
 
 class LogoServer implements ILogoServerConfig {
   readonly DEBUG: Optional<boolean>
@@ -96,27 +110,24 @@ class LogoServer implements ILogoServerConfig {
             host: getHost()
           })
 
-    const getResponse = (body: Nullable<BodyInit>, opt?: ResponseInit): Response =>
-      new Response(body, { ...opt, headers: nosecone() })
+    const hono: Hono = new Hono()
 
-    const status = {
-      404: "Not Found",
-      NO_CONTENT: 204,
-      NOT_FOUND: 404
-    } as const
+    hono.use("*", secureHeaders())
 
-    const routes: Record<string, () => Response> = {}
-    routes[`/${this.LOGO_NAME}`] = (): Response => getResponse(file(this.logo))
+    hono.get(`/${this.LOGO_NAME}`, serveStatic({ path: this.logo }))
+
     if (this.LOGO2_NAME) {
-      routes[`/${this.LOGO2_NAME}`] = (): Response => getResponse(file(this.logo2))
+      hono.get(`/${this.LOGO2_NAME}`, serveStatic({ path: this.logo2 }))
     }
-    routes["/favicon.ico"] = (): Response => getResponse(null, { status: status.NO_CONTENT })
-    routes["/*"] = (): Response => getResponse(status[404], { status: status.NOT_FOUND })
+
+    hono.get("/favicon.ico", (c: Context) => c.body(null, NO_CONTENT as SuccessStatusCode))
+
+    hono.notFound((c: Context) => c.text(STR_NOT_FOUND, NOT_FOUND as ClientErrorStatusCode))
 
     SERVER = serve({
+      fetch: hono.fetch,
       hostname: getHost(),
-      port: PORT,
-      routes
+      port: PORT
     })
 
     if (Bun.env.NODE_ENV === "test") {
