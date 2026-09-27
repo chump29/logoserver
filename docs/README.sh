@@ -1,5 +1,8 @@
 #!/usr/bin/env -S bash -e
 
+export _user=chump29
+export _repo=logger
+
 echo -e "📌 Packages:\n"
 
 _bun=$(bun --version)
@@ -19,7 +22,6 @@ if [ -f "../tests/coverage/lcov.info" ]; then
 fi
 export _coverage
 echo -e "\n☂️  Coverage: $_coverage%"
-
 
 echo -e "\n🛠️  Creating README.md..."
 

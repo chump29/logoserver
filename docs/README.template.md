@@ -7,10 +7,11 @@
 ![Bun](https://img.shields.io/badge/Bun-$_bun-informational?style=plastic&logo=bun "Bun") &nbsp;
 ![Hono](https://img.shields.io/badge/Hono-$_hono-informational?style=plastic&logo=hono "Hono")
 
-![CodeQL](https://github.com/chump29/logoserver/workflows/CodeQL/badge.svg "CodeQL") &nbsp;
+![CodeQL](https://github.com/$_user/$_repo/workflows/CodeQL/badge.svg "CodeQL") &nbsp;
 ![Coverage](https://img.shields.io/badge/Coverage-$_coverage%25-success?style=plastic&logo=jest "Coverage")
 
-![License](https://img.shields.io/github/license/chump29/logoserver?style=plastic&color=blueviolet&label=License&logo=gplv3 "GPLv3")
+![NO AI](https://img.shields.io/badge/NO-AI-orange?style=plastic "NO AI") &nbsp;
+![License](https://img.shields.io/github/license/$_user/$_repo?style=plastic&color=blueviolet&label=License&logo=gplv3 "GPLv3")
 
 ---
 

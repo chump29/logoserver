@@ -49,9 +49,7 @@ let SERVER: Nullable<ReturnType<typeof serve>> = null
 
 let PORT: number = 0
 
-/**
- * For testing only
- */
+/** For testing only */
 let testingPort: Nullable<number> = null
 
 const ext: string[] = [".png", ".webp", ".jpg", ".jpeg", ".gif"] as const
