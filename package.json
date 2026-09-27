@@ -1,6 +1,6 @@
 {
   "name": "@postfmly/logoserver",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "Logo server",
   "keywords": [
     "logo",
@@ -16,6 +16,7 @@
     "name": "Chris Post",
     "email": "admin@postfmly.com"
   },
+  "sideEffects": false,
   "type": "module",
   "scripts": {
     "build": "bun run --bun bunup",
