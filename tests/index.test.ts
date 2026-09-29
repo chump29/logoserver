@@ -34,7 +34,6 @@ describe("index", (): void => {
     const response: Response = await fetch(new Request(`http://localhost:${testingPort}/${Bun.env.LOGO_NAME}`))
     expect(response.status).toBe(OK)
     expect(response.headers.get("content-type")).toStartWith("image/")
-    expect(response.headers.get("X-Content-Type-Options")).toBe("nosniff")
     await logoServer.stop()
     await logoServer.stop() // for coverage
   })

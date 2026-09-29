@@ -5,6 +5,7 @@
     "": {
       "name": "@postfmly/logoserver",
       "dependencies": {
+        "@hono/bun": "^1.0.0",
         "@postfmly/logger": "^1.0.34",
         "@postfmly/types": "^1.0.3",
         "get-port": "^7.2.0",
@@ -212,6 +213,8 @@
     "@emnapi/runtime": ["@emnapi/runtime@1.11.2", "https://npm.postfmly.com/@emnapi/runtime/-/runtime-1.11.2.tgz", { "dependencies": { "tslib": "^2.4.0" } }, "sha512-kyOl3X0DuTiT1h2ft8r2fYO8JYtU9a9Xis/zBSiGArNaagCOWx90N1k2wxp18czFDH+OgcWGb5ZP/XMt3dcyPA=="],
 
     "@emnapi/wasi-threads": ["@emnapi/wasi-threads@1.2.2", "https://npm.postfmly.com/@emnapi/wasi-threads/-/wasi-threads-1.2.2.tgz", { "dependencies": { "tslib": "^2.4.0" } }, "sha512-c95qOXkHdydNKhscBTebqEC1CVAZpyqOfVfBzQ1qgzyl3gfeldUjIggDbIZgDKsHLgnsM+igH7TJ/eAasaVuMA=="],
+
+    "@hono/bun": ["@hono/bun@1.0.0", "https://npm.postfmly.com/@hono/bun/-/bun-1.0.0.tgz", { "peerDependencies": { "hono": ">=4.13.9" } }, "sha512-akUaWoKyW2wv+WKZZQCeRqZEN3NovPF8z/60dEBNJJ2ini9HBNo/0jLZLFyJW8xOiipncYyzGKgOuM+NZsaOzA=="],
 
     "@napi-rs/wasm-runtime": ["@napi-rs/wasm-runtime@1.2.4", "https://npm.postfmly.com/@napi-rs/wasm-runtime/-/wasm-runtime-1.2.4.tgz", { "dependencies": { "@tybys/wasm-util": "^0.10.3" }, "peerDependencies": { "@emnapi/core": "^1.7.1 || ^2.0.0-alpha.4", "@emnapi/runtime": "^1.7.1 || ^2.0.0-alpha.4" } }, "sha512-AJxoUD2/15ESHbvpcyjU274nsAPLuOtPHCk0vKJM5pj//Fg/B1FXNWjPnXTT9PymCYYiHo4zPj0ZomXBKhoy7g=="],
 
