@@ -110,7 +110,14 @@ class LogoServer implements ILogoServerConfig {
 
     const hono: Hono = new Hono()
 
-    hono.use("*", secureHeaders())
+    hono.use(
+      "*",
+      secureHeaders({
+        crossOriginEmbedderPolicy: false,
+        crossOriginOpenerPolicy: false,
+        crossOriginResourcePolicy: false
+      })
+    )
 
     hono.get(`/${this.LOGO_NAME}`, serveStatic({ path: this.logo }))
 
