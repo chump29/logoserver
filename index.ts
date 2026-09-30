@@ -9,6 +9,7 @@ import { type Nullable, type Optional } from "@postfmly/types"
 import { serveStatic } from "@hono/bun"
 import { default as getPort } from "get-port"
 import { type Context } from "hono"
+import { secureHeaders } from "hono/secure-headers"
 import { Hono } from "hono/tiny"
 import { type ClientErrorStatusCode, type SuccessStatusCode } from "hono/utils/http-status"
 import {
@@ -108,6 +109,8 @@ class LogoServer implements ILogoServerConfig {
           })
 
     const hono: Hono = new Hono()
+
+    hono.use("*", secureHeaders({ crossOriginResourcePolicy: false }))
 
     hono.get(`/${this.LOGO_NAME}`, serveStatic({ path: this.logo }))
 
