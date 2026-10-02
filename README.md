@@ -5,7 +5,7 @@
 ---
 
 ![Bun](https://img.shields.io/badge/Bun-1.4.2-informational?style=plastic&logo=bun "Bun") &nbsp;
-![Hono](https://img.shields.io/badge/Hono-^4.13.11-informational?style=plastic&logo=hono "Hono")
+![Hono](https://img.shields.io/badge/Hono-^4.13.12-informational?style=plastic&logo=hono "Hono")
 
 ![CodeQL](https://github.com/chump29/logger/workflows/CodeQL/badge.svg "CodeQL") &nbsp;
 ![Coverage](https://img.shields.io/badge/Coverage-100%25-success?style=plastic&logo=jest "Coverage")
@@ -42,10 +42,10 @@ await logoServer.stop()
 |          Debug          |   DEBUG    |  true/**false**   |
 |        IPv4/IPv6        | LOGO_IPV6  |  true/**false**   |
 |  Logo Name<sup>1<sup>   | LOGO_NAME  |    \<filename>    |
-|     Logo Local Path     | LOGO_PATH  |        "."        |
+|     Logo Local Path     | LOGO_PATH  |         .         |
 |          Port           | LOGO_PORT  | **random**/[port] |
 | Logo 2 Name<sup>1</sup> | LOGO2_NAME |    [filename]     |
-|    Logo 2 Local Path    | LOGO2_PATH |        "."        |
+|    Logo 2 Local Path    | LOGO2_PATH |         .         |
 
 ###### <sup>1</sup> Supports PNG, WEBP, JPG/JPEG, GIF
 

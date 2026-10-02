@@ -1,5 +1,6 @@
 import { STATUS_CODES } from "node:http"
 import { constants } from "node:http2"
+import { join } from "node:path"
 
 import { serve } from "bun"
 
@@ -13,10 +14,10 @@ import { secureHeaders } from "hono/secure-headers"
 import { Hono } from "hono/tiny"
 import { type ClientErrorStatusCode, type SuccessStatusCode } from "hono/utils/http-status"
 import {
-  gtValue,
   integer,
   literal,
-  ltValue,
+  maxValue,
+  minValue,
   nonEmpty,
   number,
   optional,
@@ -65,16 +66,16 @@ class LogoServer implements ILogoServerConfig {
   readonly DEBUG: Optional<boolean>
   readonly LOGO_IPV6: Optional<boolean>
   readonly LOGO_NAME: string
-  readonly LOGO_PATH: Optional<string>
+  readonly LOGO_PATH: string
   readonly LOGO_PORT: Optional<"random" | number>
   readonly LOGO2_NAME: Optional<string>
-  readonly LOGO2_PATH: Optional<string>
+  readonly LOGO2_PATH: string
 
   private get logo(): string {
-    return `${this.LOGO_PATH}/${this.LOGO_NAME}`
+    return join(this.LOGO_PATH, this.LOGO_NAME)
   }
   private get logo2(): string {
-    return `${this.LOGO2_PATH}/${this.LOGO2_NAME}`
+    return join(this.LOGO2_PATH, this.LOGO2_NAME ?? "")
   }
 
   constructor(config: ILogoServerConfig) {
@@ -84,7 +85,10 @@ class LogoServer implements ILogoServerConfig {
     this.LOGO_PATH = parse(optional(StringSchema, "."), config.LOGO_PATH)
     this.LOGO_PORT = parse(
       optional(
-        union([pipe(StringSchema, literal("random")), pipe(number(), integer(), gtValue(MIN_PORT), ltValue(MAX_PORT))]),
+        union([
+          pipe(StringSchema, literal("random")),
+          pipe(number(), integer(), minValue(MIN_PORT), maxValue(MAX_PORT))
+        ]),
         "random"
       ),
       config.LOGO_PORT
