@@ -1,4 +1,4 @@
-import { beforeAll, describe, expect, type jest, spyOn, test } from "bun:test"
+import { describe, expect, spyOn, test } from "bun:test"
 
 import { type ContentfulStatusCode } from "hono/utils/http-status"
 import { status } from "http-status"
@@ -14,11 +14,8 @@ const logoServer: LogoServer = new LogoServer({
   LOGO2_PATH: env.LOGO2_PATH
 } satisfies ILogoServerConfig)
 
-const infoSpy: jest.Mock = spyOn(console, "info")
-
-beforeAll((): void => {
-  infoSpy.mockReset() // suppress
-})
+// * NOTE: suppress console output
+spyOn(console, "info").mockImplementation((): void => undefined)
 
 describe("index", (): void => {
   test("logo", async (): Promise<void> => {

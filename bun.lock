@@ -6,7 +6,7 @@
       "name": "@postfmly/logoserver",
       "dependencies": {
         "@hono/bun": "^1.0.1",
-        "@postfmly/logger": "^1.1.15",
+        "@postfmly/logger": "^1.2.1",
         "@postfmly/types": "^1.0.9",
         "envalid": "^8.2.0",
         "get-port": "^7.2.0",
@@ -316,7 +316,7 @@
 
     "@postfmly/config": ["@postfmly/config@1.6.11", "https://npm.postfmly.com/@postfmly/config/-/config-1.6.11.tgz", { "dependencies": { "@biomejs/biome": "^2.6.2", "@types/bun": "^1.4.3", "@types/node": "^26.6.5", "cspell": "^10.4.0", "globals": "^17.13.0" }, "bin": { "link-configs": "bin/link-configs" } }, "sha512-LM9D23tzCa6mZxQ1dDy+/h6ZT/6KepCqrIRtC/e9fJYqSod5HXLFZYMlA9aVnAGbSap63hcAw1YzzrU1uf7pOQ=="],
 
-    "@postfmly/logger": ["@postfmly/logger@1.1.15", "https://npm.postfmly.com/@postfmly/logger/-/logger-1.1.15.tgz", { "dependencies": { "ansis": "^4.4.0", "browser-or-node": "^3.0.0", "dayjs": "^1.11.23", "hex-color-to-color-name": "^2.0.8", "ts-pattern": "^5.9.2" } }, "sha512-yXKKRnew6ZdUGAgrlM93vAi/plZJ017R846Q01qUDOJhTYxamuhYX0wmiqkkuELFt/jOZYR7xxsDfTuuGdcwwA=="],
+    "@postfmly/logger": ["@postfmly/logger@1.2.1", "https://npm.postfmly.com/@postfmly/logger/-/logger-1.2.1.tgz", { "dependencies": { "ansis": "^4.4.0", "browser-or-node": "^3.0.0", "dayjs": "^1.11.23", "hex-color-to-color-name": "^2.0.8", "ts-pattern": "^5.9.2" } }, "sha512-fAiQoKtSW/N7QvKg16SZEqhAs07ybzgBGcW1V0FKzDl7zNtxOxr99Vf0z0rMtuqY2vQH6pvdY/0E9/pDPVMfbg=="],
 
     "@postfmly/types": ["@postfmly/types@1.0.9", "https://npm.postfmly.com/@postfmly/types/-/types-1.0.9.tgz", {}, "sha512-4KgqOkSaB0gVnukjTUYNixpz93UtnG3raGBNNcCfFdTutYKw0p76lcuPn+xHsuFr/hsw0gbCBAq9oscyvrUSFw=="],
 
@@ -476,7 +476,7 @@
 
     "valibot": ["valibot@1.5.0", "https://npm.postfmly.com/valibot/-/valibot-1.5.0.tgz", { "peerDependencies": { "typescript": ">=5" }, "optionalPeers": ["typescript"] }, "sha512-nil6AkP2TChWL43Z5uJ6GTxX01CUA+g8LWUM+N/rB9NBbkUMaUsi9PUNzlUPgoKASgmx9f7eGOYpJ04/fSa6FQ=="],
 
-    "vscode-languageserver-textdocument": ["vscode-languageserver-textdocument@1.0.15", "https://npm.postfmly.com/vscode-languageserver-textdocument/-/vscode-languageserver-textdocument-1.0.15.tgz", {}, "sha512-Gsfr9S8LU3S6885cS+NaleasJ0n3V5y/SOTqHCifQiXWFw3G9w9/YItDfwHrlCz+dSZWWZ8ilYVMcJe7Sz7Sxw=="],
+    "vscode-languageserver-textdocument": ["vscode-languageserver-textdocument@1.0.16", "https://npm.postfmly.com/vscode-languageserver-textdocument/-/vscode-languageserver-textdocument-1.0.16.tgz", {}, "sha512-qeNEuOi9a3qkqRf7Gfez2WL2VwlBTLCNekHBGO9kxPVUp9XuY15yfTJ9jwvOwKI0I2MhUUfZq95NSp+LK1CLQg=="],
 
     "vscode-uri": ["vscode-uri@3.2.0", "https://npm.postfmly.com/vscode-uri/-/vscode-uri-3.2.0.tgz", {}, "sha512-m2gXo3bn0G1kT9InzMf07fTbqMbGtyckj3bH5ktLO+1Ssv+yiATZ4dhwaQv9UZWxJh6E9IFGnQyjgWVDWVBDrg=="],
 
