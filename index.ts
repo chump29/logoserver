@@ -16,12 +16,25 @@ import { status } from "http-status"
 import { env } from "./env.ts"
 
 interface ILogoServerConfig {
+  /** Show debug
+   * @default false */
   readonly DEBUG?: boolean
+  /** Use IPv6
+   * @default false */
   readonly LOGO_IPV6?: boolean
+  /** Primary logo name */
   readonly LOGO_NAME: string
+  /** Primary logo path on server
+   * @default . */
   readonly LOGO_PATH?: string
+  /** Logo server port
+   * @default random */
   readonly LOGO_PORT?: number | "random"
+  /** Secondary logo name
+   * @default undefined */
   readonly LOGO2_NAME?: string
+  /** Secondary logo path on server
+   * @default . */
   readonly LOGO2_PATH?: string
 }
 
@@ -34,6 +47,7 @@ let testingPort: Nullable<number> = null
 
 const ext: string[] = [".png", ".webp", ".jpg", ".jpeg", ".gif"] as const
 
+/** Logo server */
 class LogoServer implements ILogoServerConfig {
   readonly DEBUG: boolean
   readonly LOGO_IPV6: boolean
@@ -51,6 +65,9 @@ class LogoServer implements ILogoServerConfig {
     return join(this.LOGO2_PATH, this.LOGO2_NAME!)
   }
 
+  /** Logo server constructor
+   * @summary config The configuration
+   * @see {@link ILogoServerConfig} */
   constructor(config: ILogoServerConfig) {
     this.DEBUG = config.DEBUG ?? env.DEBUG
     this.LOGO_IPV6 = config.LOGO_IPV6 ?? env.LOGO_IPV6
@@ -102,6 +119,7 @@ class LogoServer implements ILogoServerConfig {
     }
   }
 
+  /** Start logo server */
   start = async (): Promise<void> => {
     if (!SERVER) {
       await this.server()
@@ -115,6 +133,7 @@ class LogoServer implements ILogoServerConfig {
     }
   }
 
+  /** Stop logo server */
   stop = async (): Promise<void> => {
     if (SERVER) {
       await SERVER.stop()
