@@ -13,9 +13,9 @@ const DEBUG: boolean = Boolean(Bun.env.DEBUG)
 
 SERVER = new LogoServer({
   DEBUG,
-  LOGO_NAME: Bun.env.LOGO_NAME,
+  LOGO_NAME: Bun.env.LOGO_NAME ?? "N/A",
   LOGO_PATH: Bun.env.LOGO_PATH
-} as ILogoServerConfig)
+} satisfies ILogoServerConfig)
 
 const shutdown = async (event: string = "ERROR"): Promise<void> => {
   if (isShutdown) {

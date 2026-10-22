@@ -8,7 +8,7 @@
 ![Hono](https://img.shields.io/badge/Hono-^4.13.13-informational?style=plastic&logo=hono "Hono")
 
 ![CodeQL](https://github.com/chump29/logger/workflows/CodeQL/badge.svg "CodeQL") &nbsp;
-![Coverage](https://img.shields.io/badge/Coverage-100%25-success?style=plastic&logo=jest "Coverage")
+![Coverage](https://img.shields.io/badge/Coverage-99.02%25-success?style=plastic&logo=jest "Coverage")
 
 ![NO AI](https://img.shields.io/badge/NO-AI-orange?style=plastic "NO AI") &nbsp;
 ![License](https://img.shields.io/github/license/chump29/logger?style=plastic&color=blueviolet&label=License&logo=gplv3 "GPLv3") &nbsp; <!-- markdownlint-disable MD013 -->
@@ -38,7 +38,7 @@ await logoServer.stop()
 ### Environment Variables
 
 |       Description       |    Key     |       Value       |
-|:-----------------------:|:----------:|:-----------------:|
+| :---------------------: | :--------: | :---------------: |
 |          Debug          |   DEBUG    |  true/**false**   |
 |        IPv4/IPv6        | LOGO_IPV6  |  true/**false**   |
 |  Logo Name<sup>1<sup>   | LOGO_NAME  |    \<filename>    |
@@ -94,7 +94,7 @@ bun run server # (CTRL-C to stop)
 ./build.sh
 ```
 
-###### *NOTE: Includes linting, testing, and building README*
+###### _NOTE: Includes linting, testing, and building README_
 
 ---
 
@@ -106,11 +106,11 @@ bun run server # (CTRL-C to stop)
 ./publish.sh
 ```
 
-###### *NOTES:*
+###### _NOTES:_
 
-- ###### *Includes building package*
+- ###### _Includes building package_
 
-- ###### *Increments `patch` version in `package.json`*
+- ###### _Increments `patch` version in `package.json`_
 
 #### Unpublish:
 

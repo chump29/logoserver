@@ -38,7 +38,7 @@ await logoServer.stop()
 ### Environment Variables
 
 |       Description       |    Key     |       Value       |
-|:-----------------------:|:----------:|:-----------------:|
+| :---------------------: | :--------: | :---------------: |
 |          Debug          |   DEBUG    |  true/**false**   |
 |        IPv4/IPv6        | LOGO_IPV6  |  true/**false**   |
 |  Logo Name<sup>1<sup>   | LOGO_NAME  |    \<filename>    |
@@ -94,7 +94,7 @@ bun run server # (CTRL-C to stop)
 ./build.sh
 ```
 
-###### *NOTE: Includes linting, testing, and building README*
+###### _NOTE: Includes linting, testing, and building README_
 
 ---
 
@@ -106,11 +106,11 @@ bun run server # (CTRL-C to stop)
 ./publish.sh
 ```
 
-###### *NOTES:*
+###### _NOTES:_
 
-- ###### *Includes building package*
+- ###### _Includes building package_
 
-- ###### *Increments `patch` version in `package.json`*
+- ###### _Increments `patch` version in `package.json`_
 
 #### Unpublish:
 

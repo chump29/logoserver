@@ -1,50 +1,29 @@
-import { STATUS_CODES } from "node:http"
-import { constants } from "node:http2"
 import { join } from "node:path"
 
 import { serve } from "bun"
 
 import { info } from "@postfmly/logger"
-import { type Nullable, type Optional } from "@postfmly/types"
+import { type Nullable } from "@postfmly/types"
 
 import { serveStatic } from "@hono/bun"
 import { default as getPort } from "get-port"
 import { type Context } from "hono"
 import { secureHeaders } from "hono/secure-headers"
 import { Hono } from "hono/tiny"
-import { type ClientErrorStatusCode, type SuccessStatusCode } from "hono/utils/http-status"
-import {
-  integer,
-  literal,
-  maxValue,
-  minValue,
-  nonEmpty,
-  number,
-  optional,
-  parse,
-  pipe,
-  string,
-  toBoolean,
-  trim,
-  union,
-  unknown
-} from "valibot"
+import { type ContentfulStatusCode } from "hono/utils/http-status"
+import { status } from "http-status"
+
+import { env } from "./env.ts"
 
 interface ILogoServerConfig {
-  readonly DEBUG: Optional<boolean>
-  readonly LOGO_IPV6: Optional<boolean>
+  readonly DEBUG?: boolean
+  readonly LOGO_IPV6?: boolean
   readonly LOGO_NAME: string
-  readonly LOGO_PATH: Optional<string>
-  readonly LOGO_PORT: Optional<number | "random">
-  readonly LOGO2_NAME: Optional<string>
-  readonly LOGO2_PATH: Optional<string>
+  readonly LOGO_PATH?: string
+  readonly LOGO_PORT?: number | "random"
+  readonly LOGO2_NAME?: string
+  readonly LOGO2_PATH?: string
 }
-
-const BooleanSchema = pipe(unknown(), toBoolean())
-const StringSchema = pipe(string(), trim(), nonEmpty())
-
-const MIN_PORT: number = 1024
-const MAX_PORT: number = 65_535
 
 let SERVER: Nullable<ReturnType<typeof serve>> = null
 
@@ -55,46 +34,31 @@ let testingPort: Nullable<number> = null
 
 const ext: string[] = [".png", ".webp", ".jpg", ".jpeg", ".gif"] as const
 
-const {
-  HTTP_STATUS_NOT_FOUND: NOT_FOUND,
-  HTTP_STATUS_NO_CONTENT: NO_CONTENT
-}: { HTTP_STATUS_NOT_FOUND: number; HTTP_STATUS_NO_CONTENT: number } = constants
-
-const STR_NOT_FOUND: string = STATUS_CODES[NOT_FOUND] as string
-
 class LogoServer implements ILogoServerConfig {
-  readonly DEBUG: Optional<boolean>
-  readonly LOGO_IPV6: Optional<boolean>
+  readonly DEBUG: boolean
+  readonly LOGO_IPV6: boolean
   readonly LOGO_NAME: string
   readonly LOGO_PATH: string
-  readonly LOGO_PORT: Optional<"random" | number>
-  readonly LOGO2_NAME: Optional<string>
+  readonly LOGO_PORT: "random" | number
+  readonly LOGO2_NAME?: string
   readonly LOGO2_PATH: string
 
   private get logo(): string {
     return join(this.LOGO_PATH, this.LOGO_NAME)
   }
   private get logo2(): string {
-    return join(this.LOGO2_PATH, this.LOGO2_NAME ?? "")
+    // biome-ignore lint/style/noNonNullAssertion: only called if defined
+    return join(this.LOGO2_PATH, this.LOGO2_NAME!)
   }
 
   constructor(config: ILogoServerConfig) {
-    this.DEBUG = parse(optional(BooleanSchema, false), config.DEBUG)
-    this.LOGO_IPV6 = parse(optional(BooleanSchema, false), config.LOGO_IPV6)
-    this.LOGO_NAME = parse(pipe(string("Invalid LOGO_NAME"), trim(), nonEmpty()), config.LOGO_NAME)
-    this.LOGO_PATH = parse(optional(StringSchema, "."), config.LOGO_PATH)
-    this.LOGO_PORT = parse(
-      optional(
-        union([
-          pipe(StringSchema, literal("random")),
-          pipe(number(), integer(), minValue(MIN_PORT), maxValue(MAX_PORT))
-        ]),
-        "random"
-      ),
-      config.LOGO_PORT
-    )
-    this.LOGO2_NAME = parse(optional(StringSchema), config.LOGO2_NAME)
-    this.LOGO2_PATH = parse(optional(StringSchema, "."), config.LOGO2_PATH)
+    this.DEBUG = config.DEBUG ?? env.DEBUG
+    this.LOGO_IPV6 = config.LOGO_IPV6 ?? env.LOGO_IPV6
+    this.LOGO_NAME = config.LOGO_NAME
+    this.LOGO_PATH = config.LOGO_PATH ?? env.LOGO_PATH
+    this.LOGO_PORT = config.LOGO_PORT ?? env.LOGO_PORT
+    this.LOGO2_NAME = config.LOGO2_NAME ?? env.LOGO2_NAME
+    this.LOGO2_PATH = config.LOGO2_PATH ?? env.LOGO2_PATH
   }
 
   private readonly server = async (): Promise<void> => {
@@ -103,11 +67,11 @@ class LogoServer implements ILogoServerConfig {
       throw new Error("Invalid LOGO_NAME")
     }
 
-    const getHost = (): string => (this.LOGO_IPV6 ? "::" : "0.0.0.0")
+    const getHost = (): "::" | "0.0.0.0" => (this.LOGO_IPV6 ? "::" : "0.0.0.0")
 
     PORT =
       typeof this.LOGO_PORT === "number"
-        ? (this.LOGO_PORT as number)
+        ? this.LOGO_PORT
         : await getPort({
             host: getHost()
           })
@@ -122,9 +86,10 @@ class LogoServer implements ILogoServerConfig {
       hono.get(`/${this.LOGO2_NAME}`, serveStatic({ path: this.logo2 }))
     }
 
-    hono.get("/favicon.ico", (c: Context) => c.body(null, NO_CONTENT as SuccessStatusCode))
+    hono.get("/favicon.ico", (c: Context) => c.body(null, status.NO_CONTENT))
 
-    hono.notFound((c: Context) => c.text(STR_NOT_FOUND, NOT_FOUND as ClientErrorStatusCode))
+    const NOT_FOUND: ContentfulStatusCode = status.NOT_FOUND
+    hono.notFound((c: Context) => c.text(status[NOT_FOUND], NOT_FOUND))
 
     SERVER = serve({
       fetch: hono.fetch,
