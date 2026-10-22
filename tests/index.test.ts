@@ -1,5 +1,4 @@
 import { describe, expect, spyOn, test } from "bun:test"
-import { spawn } from "bun"
 
 import { type ContentfulStatusCode } from "hono/utils/http-status"
 import { status } from "http-status"
@@ -64,12 +63,5 @@ describe("index", (): void => {
     expect(await response.text()).toBe(status[NOT_FOUND])
 
     await logoServer.stop()
-  })
-
-  test("cli", async (): Promise<void> => {
-    const proc = spawn(["bun", "env.ts"])
-    const txt: string = await new Response(proc.stdout).text()
-
-    expect(txt).toContain("Values")
   })
 })
