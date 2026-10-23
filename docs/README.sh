@@ -10,6 +10,7 @@ export _bun
 echo -e " • Bun: $_bun"
 
 _hono=$(jq -r '.dependencies.hono // "❓"' ../package.json)
+_hono=${_hono:1}
 export _hono
 echo -e " • Hono: $_hono"
 

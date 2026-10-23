@@ -3,7 +3,7 @@ import { join } from "node:path"
 import { serve } from "bun"
 
 import { info } from "@postfmly/logger"
-import { type Nullable } from "@postfmly/types"
+import { type Nullable, type Optional } from "@postfmly/types"
 
 import { serveStatic } from "@hono/bun"
 import { default as getPort } from "get-port"
@@ -22,8 +22,9 @@ interface ILogoServerConfig {
   /** Use IPv6
    * @default false */
   readonly LOGO_IPV6?: boolean
-  /** Primary logo name */
-  readonly LOGO_NAME: string
+  /** Primary logo name
+   * @default undefined */
+  readonly LOGO_NAME?: string
   /** Primary logo path on server
    * @default . */
   readonly LOGO_PATH?: string
@@ -51,14 +52,15 @@ const ext: string[] = [".png", ".webp", ".jpg", ".jpeg", ".gif"] as const
 class LogoServer implements ILogoServerConfig {
   readonly DEBUG: boolean
   readonly LOGO_IPV6: boolean
-  readonly LOGO_NAME: string
+  readonly LOGO_NAME?: string
   readonly LOGO_PATH: string
   readonly LOGO_PORT: "random" | number
   readonly LOGO2_NAME?: string
   readonly LOGO2_PATH: string
 
   private get logo(): string {
-    return join(this.LOGO_PATH, this.LOGO_NAME)
+    // biome-ignore lint/style/noNonNullAssertion: only called if defined
+    return join(this.LOGO_PATH, this.LOGO_NAME!)
   }
   private get logo2(): string {
     // biome-ignore lint/style/noNonNullAssertion: only called if defined
@@ -71,19 +73,19 @@ class LogoServer implements ILogoServerConfig {
   constructor(config: ILogoServerConfig) {
     this.DEBUG = config.DEBUG ?? env.DEBUG
     this.LOGO_IPV6 = config.LOGO_IPV6 ?? env.LOGO_IPV6
-    this.LOGO_NAME = config.LOGO_NAME
+    this.LOGO_NAME = config.LOGO_NAME ?? env.LOGO_NAME
     this.LOGO_PATH = config.LOGO_PATH ?? env.LOGO_PATH
     this.LOGO_PORT = config.LOGO_PORT ?? env.LOGO_PORT
     this.LOGO2_NAME = config.LOGO2_NAME ?? env.LOGO2_NAME
     this.LOGO2_PATH = config.LOGO2_PATH ?? env.LOGO2_PATH
+
+    const logoName: Optional<string> = this.LOGO_NAME // scope
+    if (!(logoName && ext.some((e: string): boolean => logoName.endsWith(e)))) {
+      throw new Error("Invalid LOGO_NAME")
+    }
   }
 
   private readonly server = async (): Promise<void> => {
-    if (!ext.some((e: string): boolean => this.LOGO_NAME.endsWith(e))) {
-      await this.stop()
-      throw new Error("Invalid LOGO_NAME")
-    }
-
     const getHost = (): "::" | "0.0.0.0" => (this.LOGO_IPV6 ? "::" : "0.0.0.0")
 
     PORT =

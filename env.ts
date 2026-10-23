@@ -19,7 +19,7 @@ const portValidator: ExactValidator<"random" | number> = makeExactValidator<"ran
 const env = cleanEnv(Bun.env, {
   DEBUG: bool({ default: false, testDefault: true }),
   LOGO_IPV6: bool({ default: false }),
-  LOGO_NAME: str({ testDefault: "test.webp" }),
+  LOGO_NAME: str({ default: undefined, testDefault: "test.webp" }),
   LOGO_PATH: str({ default: ".", testDefault: "tests" }),
   LOGO_PORT: portValidator({ default: "random" }),
   LOGO2_NAME: str({ default: undefined, testDefault: "test.webp" }),
