@@ -3,7 +3,7 @@ import { join } from "node:path"
 import { serve } from "bun"
 
 import { info } from "@postfmly/logger"
-import { type Nullable, type Optional } from "@postfmly/types"
+import { type Nullable } from "@postfmly/types"
 
 import { serveStatic } from "@hono/bun"
 import { default as getPort } from "get-port"
@@ -46,7 +46,7 @@ let PORT: number = 0
 /** For testing only */
 let testingPort: Nullable<number> = null
 
-const ext: string[] = [".png", ".webp", ".jpg", ".jpeg", ".gif"] as const
+const ext = [".png", ".webp", ".jpg", ".jpeg", ".gif"] as const
 
 /** Logo server */
 class LogoServer implements ILogoServerConfig {
@@ -79,7 +79,7 @@ class LogoServer implements ILogoServerConfig {
     this.LOGO2_NAME = config.LOGO2_NAME ?? env.LOGO2_NAME
     this.LOGO2_PATH = config.LOGO2_PATH ?? env.LOGO2_PATH
 
-    const logoName: Optional<string> = this.LOGO_NAME // scope
+    const logoName = this.LOGO_NAME // scope
     if (!(logoName && ext.some((e: string): boolean => logoName.endsWith(e)))) {
       throw new Error("Invalid LOGO_NAME")
     }
@@ -95,7 +95,7 @@ class LogoServer implements ILogoServerConfig {
             host: getHost()
           })
 
-    const hono: Hono = new Hono()
+    const hono = new Hono()
 
     hono.use("*", secureHeaders({ crossOriginResourcePolicy: false }))
 

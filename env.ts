@@ -3,8 +3,8 @@ import { printVars } from "@postfmly/logger"
 import { bool, cleanEnv, type ExactValidator, makeExactValidator, str } from "envalid"
 import { integer, literal, maxValue, minValue, nonEmpty, parse, pipe, string, toNumber, trim, union } from "valibot"
 
-const MIN_PORT: number = 1024
-const MAX_PORT: number = 65_535
+const MIN_PORT = 1024
+const MAX_PORT = 65_535
 
 const StringSchema = pipe(string(), trim(), nonEmpty())
 const PortSchema = union([

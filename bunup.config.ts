@@ -1,7 +1,7 @@
 import { defineConfig } from "bunup"
 import { copy } from "bunup/plugins"
 
-const additionalFiles: string[] = ["LICENSE", "package.json", "README.md"]
+const additionalFiles = ["LICENSE", "package.json", "README.md"]
 
 const config: ReturnType<typeof defineConfig> = defineConfig({
   footer: "// ♡ ᓚᘏᗢ ♡",

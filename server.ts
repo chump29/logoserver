@@ -9,7 +9,7 @@ let SERVER: Nullable<LogoServer> = null
 
 let isShutdown: boolean = false
 
-const DEBUG: boolean = Boolean(Bun.env.DEBUG)
+const DEBUG = Boolean(Bun.env.DEBUG)
 
 SERVER = new LogoServer({
   DEBUG,

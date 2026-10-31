@@ -22,7 +22,7 @@ describe("index", (): void => {
     await logoServer.start()
     await logoServer.start() // for coverage
 
-    const response: Response = await fetch(new Request(`http://localhost:${testingPort}/${env.LOGO_NAME}`))
+    const response = await fetch(new Request(`http://localhost:${testingPort}/${env.LOGO_NAME}`))
 
     expect(response.status).toBe(status.OK)
     expect(response.headers.get("content-type")).toStartWith("image/")
@@ -34,7 +34,7 @@ describe("index", (): void => {
   test("logo2", async (): Promise<void> => {
     await logoServer.start()
 
-    const response: Response = await fetch(new Request(`http://localhost:${testingPort}/${env.LOGO2_NAME}`))
+    const response = await fetch(new Request(`http://localhost:${testingPort}/${env.LOGO2_NAME}`))
 
     expect(response.status).toBe(status.OK)
     expect(response.headers.get("content-type")).toStartWith("image/")
@@ -45,7 +45,7 @@ describe("index", (): void => {
   test("favicon", async (): Promise<void> => {
     await logoServer.start()
 
-    const response: Response = await fetch(new Request(`http://localhost:${testingPort}/favicon.ico`))
+    const response = await fetch(new Request(`http://localhost:${testingPort}/favicon.ico`))
 
     expect(response.status).toBe(status.NO_CONTENT)
     expect(await response.text()).toBeEmpty()
@@ -56,7 +56,7 @@ describe("index", (): void => {
   test("not found", async (): Promise<void> => {
     await logoServer.start()
 
-    const response: Response = await fetch(new Request(`http://localhost:${testingPort}/test`))
+    const response = await fetch(new Request(`http://localhost:${testingPort}/test`))
     const NOT_FOUND: ContentfulStatusCode = status.NOT_FOUND
 
     expect(response.status).toBe(NOT_FOUND)
