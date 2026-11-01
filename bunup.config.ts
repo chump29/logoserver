@@ -3,7 +3,7 @@ import { copy } from "bunup/plugins"
 
 const additionalFiles = ["LICENSE", "package.json", "README.md"]
 
-const config: ReturnType<typeof defineConfig> = defineConfig({
+export default defineConfig({
   footer: "// ♡ ᓚᘏᗢ ♡",
   minify: true,
   plugins: [copy(additionalFiles)],
@@ -13,5 +13,3 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
     level: "error"
   }
 })
-
-export default config

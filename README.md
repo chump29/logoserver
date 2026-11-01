@@ -5,7 +5,7 @@
 ---
 
 ![Bun](https://img.shields.io/badge/Bun-1.4.4-informational?style=plastic&logo=bun "Bun") &nbsp;
-![Hono](https://img.shields.io/badge/Hono-4.13.14-informational?style=plastic&logo=hono "Hono")
+![Hono](https://img.shields.io/badge/Hono-4.13.16-informational?style=plastic&logo=hono "Hono")
 
 ![CodeQL](https://github.com/chump29/logger/workflows/CodeQL/badge.svg "CodeQL") &nbsp;
 ![Coverage](https://img.shields.io/badge/Coverage-96.04%25-success?style=plastic&logo=jest "Coverage")

@@ -10,12 +10,12 @@
         "@postfmly/types": "^1.0.12",
         "envalid": "^9.0.0",
         "get-port": "^7.2.0",
-        "hono": "^4.13.14",
+        "hono": "^4.13.16",
         "http-status": "^2.1.0",
         "valibot": "^1.5.0",
       },
       "devDependencies": {
-        "@postfmly/config": "^1.6.16",
+        "@postfmly/config": "^1.6.18",
         "bunup": "^0.16.32",
         "cve-lite-cli": "^1.40.0",
         "husky": "^9.1.7",
@@ -316,7 +316,7 @@
 
     "@oxc-transform/binding-win32-x64-msvc": ["@oxc-transform/binding-win32-x64-msvc@0.93.0", "https://npm.postfmly.com/@oxc-transform/binding-win32-x64-msvc/-/binding-win32-x64-msvc-0.93.0.tgz", { "os": "win32", "cpu": "x64" }, "sha512-6QN3DEaEw3eWioWEFRgNsTvYq8czYSnpkjB2za+/WdLN0g5FzOl2ZEfNiPrBWIPnSmjUmDWtWVWcSjwY7fX5/Q=="],
 
-    "@postfmly/config": ["@postfmly/config@1.6.16", "https://npm.postfmly.com/@postfmly/config/-/config-1.6.16.tgz", { "dependencies": { "@biomejs/biome": "^2.6.4", "@types/bun": "^1.4.4", "@types/node": "^26.6.6", "cspell": "^10.4.0", "globals": "^17.13.0" }, "bin": { "link-configs": "bin/link-configs" } }, "sha512-eOu2EcKzwo3FDXYw97IoQHJtTcUQdgxZNNjGIZjlUnFj5/saOgT1nLi+8RiAQfISBFcr1vb60Hiq5Hq2VNl6dA=="],
+    "@postfmly/config": ["@postfmly/config@1.6.18", "https://npm.postfmly.com/@postfmly/config/-/config-1.6.18.tgz", { "dependencies": { "@biomejs/biome": "^2.6.4", "@types/bun": "^1.4.4", "@types/node": "^26.6.6", "cspell": "^10.4.0", "globals": "^17.13.0" }, "bin": { "link-configs": "bin/link-configs" } }, "sha512-Q2zCvqeW9xIVUWw/l3wpVyYiYkR3iWlnkx+e1kUQvHRyc4SmSHAXfi7BjL6NW7GoytBe/PIAWott1PVaI/X9pg=="],
 
     "@postfmly/logger": ["@postfmly/logger@1.2.6", "https://npm.postfmly.com/@postfmly/logger/-/logger-1.2.6.tgz", { "dependencies": { "@ctrl/tinycolor": "^4.2.2", "ansis": "^4.4.0", "browser-or-node": "^3.0.0", "dayjs": "^1.11.23", "hex-color-to-color-name": "^2.0.8", "ts-pattern": "^5.9.2" } }, "sha512-coSooy/PoOTaXesGyBEf9qKTZ5RWTB3uOM0gAgGZ9ALFCAPALzSAp3qo9I5k1vjhx0NeXiazcuOC1t1uWpDubA=="],
 
@@ -428,7 +428,7 @@
 
     "hex-color-to-color-name": ["hex-color-to-color-name@2.0.8", "https://npm.postfmly.com/hex-color-to-color-name/-/hex-color-to-color-name-2.0.8.tgz", {}, "sha512-s69Eu+30Z1oC/GMwEeqbThT0m3G7AzFlNlpSInzwEKwpO4gPXYInlA/wYWLDXpscJ/VWazdbgnWTpT3rpFn+vQ=="],
 
-    "hono": ["hono@4.13.14", "https://npm.postfmly.com/hono/-/hono-4.13.14.tgz", {}, "sha512-yhRLQ21U6qa9Hsu2N7Qcbh8tE+WKEcoErjIo56LeSGiGXGp9sA7UpE86Ui9uexb61KakiGwuHMn2QdV7w6i6kQ=="],
+    "hono": ["hono@4.13.16", "https://npm.postfmly.com/hono/-/hono-4.13.16.tgz", {}, "sha512-AOLOEhvrV+iH92xXCnFr/5+3KjPKcI3xP63XJtX5spAnkznPdHijlIsUTpi7/9EhWqrTCekw5c5zh1K+YsVw7A=="],
 
     "http-status": ["http-status@2.1.0", "https://npm.postfmly.com/http-status/-/http-status-2.1.0.tgz", {}, "sha512-O5kPr7AW7wYd/BBiOezTwnVAnmSNFY+J7hlZD2X5IOxVBetjcHAiTXhzj0gMrnojQlwy+UT1/Y3H3vJ3UlmvLA=="],
 
