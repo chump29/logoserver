@@ -1,6 +1,6 @@
 import { printVars } from "@postfmly/logger"
 
-import { bool, cleanEnv, type ExactValidator, makeExactValidator, str } from "envalid"
+import { bool, cleanEnv, makeExactValidator, str } from "envalid"
 import { integer, literal, maxValue, minValue, nonEmpty, parse, pipe, string, toNumber, trim, union } from "valibot"
 
 const MIN_PORT = 1024
@@ -12,9 +12,7 @@ const PortSchema = union([
   pipe(StringSchema, toNumber(), integer(), minValue(MIN_PORT), maxValue(MAX_PORT))
 ])
 
-const portValidator: ExactValidator<"random" | number> = makeExactValidator<"random" | number>(
-  (s: string): "random" | number => parse(PortSchema, s)
-)
+const portValidator = makeExactValidator<"random" | number>((s: string): "random" | number => parse(PortSchema, s))
 
 const env = cleanEnv(Bun.env, {
   DEBUG: bool({ default: false, testDefault: true }),
@@ -23,7 +21,8 @@ const env = cleanEnv(Bun.env, {
   LOGO_PATH: str({ default: ".", testDefault: "tests" }),
   LOGO_PORT: portValidator({ default: "random" }),
   LOGO2_NAME: str({ default: undefined, testDefault: "test.webp" }),
-  LOGO2_PATH: str({ default: ".", testDefault: "tests" })
+  LOGO2_PATH: str({ default: ".", testDefault: "tests" }),
+  TEST_FULL: bool({ default: false })
 })
 
 if (import.meta.main) {

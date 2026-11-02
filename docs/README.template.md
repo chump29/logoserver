@@ -73,9 +73,6 @@ bun run test:coverage
 
 # Tests w/Coverage (verbose)
 bun run test:coverage:full
-
-# Run server
-bun run server # (CTRL-C to stop)
 ```
 
 ---

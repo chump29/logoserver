@@ -8,7 +8,7 @@
 ![Hono](https://img.shields.io/badge/Hono-4.13.16-informational?style=plastic&logo=hono "Hono")
 
 ![CodeQL](https://github.com/chump29/logger/workflows/CodeQL/badge.svg "CodeQL") &nbsp;
-![Coverage](https://img.shields.io/badge/Coverage-96.04%25-success?style=plastic&logo=jest "Coverage")
+![Coverage](https://img.shields.io/badge/Coverage-97%25-success?style=plastic&logo=jest "Coverage")
 
 ![NO AI](https://img.shields.io/badge/NO-AI-orange?style=plastic "NO AI") &nbsp;
 ![License](https://img.shields.io/github/license/chump29/logger?style=plastic&color=blueviolet&label=License&logo=gplv3 "GPLv3") &nbsp; <!-- markdownlint-disable MD013 -->
@@ -73,9 +73,6 @@ bun run test:coverage
 
 # Tests w/Coverage (verbose)
 bun run test:coverage:full
-
-# Run server
-bun run server # (CTRL-C to stop)
 ```
 
 ---

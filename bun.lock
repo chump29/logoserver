@@ -332,7 +332,7 @@
 
     "ansi-regex": ["ansi-regex@6.5.0", "https://npm.postfmly.com/ansi-regex/-/ansi-regex-6.5.0.tgz", {}, "sha512-zhvbbbdt1kbw7EJ9OQoxmQcuaNR9P5kTj7e/YdmOSU10aHWbycofJxA6jKfoEy3vlLdctOF9ZHaxLtmSm998wQ=="],
 
-    "ansis": ["ansis@4.4.0", "https://npm.postfmly.com/ansis/-/ansis-4.4.0.tgz", {}, "sha512-9k3v7xcHwgdO/DruxGIg4HtjvlAZlcnsX/mzqUb1t3NkYnl9kK2UJ+Gq0io+vQf7iT//BD/HB/NBkUR1LWxoeA=="],
+    "ansis": ["ansis@4.5.0", "https://npm.postfmly.com/ansis/-/ansis-4.5.0.tgz", {}, "sha512-KwIVkfFfJSSzBmZhDGuTmkhWqTdyB5oNVzzznBJbBZ5bZtHiqSrcugRF0RKJKT4Ss3d7ZrcjnlFVDlQNmtWfWw=="],
 
     "array-timsort": ["array-timsort@1.0.3", "https://npm.postfmly.com/array-timsort/-/array-timsort-1.0.3.tgz", {}, "sha512-/+3GRL7dDAGEfM6TseQk/U+mi18TU2Ms9I3UlLdUMhz2hbvGNTKdj9xniwXfUqgYhHxRx0+8UnKkvlNwVU+cWQ=="],
 
@@ -404,7 +404,7 @@
 
     "expand-template": ["expand-template@2.0.3", "https://npm.postfmly.com/expand-template/-/expand-template-2.0.3.tgz", {}, "sha512-XYfuKMvj4O35f/pOXLObndIRvyQ+/+6AhODh+OKWj9S9498pHHn/IMszH+gt0fBCRWMNfk1ZSp5x3AifmnI2vg=="],
 
-    "fast-equals": ["fast-equals@6.2.1", "https://npm.postfmly.com/fast-equals/-/fast-equals-6.2.1.tgz", {}, "sha512-s7KFkLPAAbIDGTh+nVYhjTiwKGvgMXAUG5vwzg8vQKj7NSRZ4eEGExBQ4rq9V90fTYVWd1cb/Wr4ffCNBmLQMQ=="],
+    "fast-equals": ["fast-equals@6.2.2", "https://npm.postfmly.com/fast-equals/-/fast-equals-6.2.2.tgz", {}, "sha512-n+XqoarWCgcar0O3om3DeNYx6xTuLWGTUF1bRZ9iuO00tsPepzP1L4V7rqtxxZ4PEya34UCESReimFvxmEVwIA=="],
 
     "fdir": ["fdir@6.5.0", "https://npm.postfmly.com/fdir/-/fdir-6.5.0.tgz", { "peerDependencies": { "picomatch": "^3 || ^4" }, "optionalPeers": ["picomatch"] }, "sha512-tIbYtZbucOs0BRGqPJkshJUYdL+SDH7dVM8gjy+ERp3WAUjLEFJE+02kanyHtwjWOnwrKYBiwAmM0p4kLJAnXg=="],
 
@@ -424,7 +424,7 @@
 
     "global-directory": ["global-directory@5.0.0", "https://npm.postfmly.com/global-directory/-/global-directory-5.0.0.tgz", { "dependencies": { "ini": "6.0.0" } }, "sha512-1pgFdhK3J2LeM+dVf2Pd424yHx2ou338lC0ErNP2hPx4j8eW1Sp0XqSjNxtk6Tc4Kr5wlWtSvz8cn2yb7/SG/w=="],
 
-    "globals": ["globals@17.13.0", "https://npm.postfmly.com/globals/-/globals-17.13.0.tgz", {}, "sha512-RwMTC61u7hrG3ZJMkZQOK4JLJrKS8QtoTii63EmWvFXHqycY9FObBJQCbsLxSO8kjKhWE5kV1GC+Vb1g3RI0Zg=="],
+    "globals": ["globals@17.14.0", "https://npm.postfmly.com/globals/-/globals-17.14.0.tgz", {}, "sha512-UtdkTVyAJePQv0J2M9Xe4L0ruNSDV314XiIJsADI2Zf40bcdAonE/D/OhAU8AT99oij9mhLByb+NvA3QWZYgCg=="],
 
     "hex-color-to-color-name": ["hex-color-to-color-name@2.0.8", "https://npm.postfmly.com/hex-color-to-color-name/-/hex-color-to-color-name-2.0.8.tgz", {}, "sha512-s69Eu+30Z1oC/GMwEeqbThT0m3G7AzFlNlpSInzwEKwpO4gPXYInlA/wYWLDXpscJ/VWazdbgnWTpT3rpFn+vQ=="],
 
@@ -510,7 +510,7 @@
 
     "safe-buffer": ["safe-buffer@5.2.1", "https://npm.postfmly.com/safe-buffer/-/safe-buffer-5.2.1.tgz", {}, "sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ=="],
 
-    "semver": ["semver@7.8.5", "https://npm.postfmly.com/semver/-/semver-7.8.5.tgz", { "bin": { "semver": "bin/semver.js" } }, "sha512-Y7/KDsb8LjooZpwaqGyulO6DQlksgCncchHGk+sZIY4SBvUocMBEFH5Ur1fI4dV+Jvl0w6cjvucaIi40puRioA=="],
+    "semver": ["semver@7.8.6", "https://npm.postfmly.com/semver/-/semver-7.8.6.tgz", { "bin": { "semver": "bin/semver.js" } }, "sha512-9lpSSU4Mly3mrtruwLs1eLK6+gzbzqeBFwRNjIjE+9LuDpWdYctrQlQ3ej1Ilgi7gknpsTRnPoLP8DpCHqHIJw=="],
 
     "simple-concat": ["simple-concat@1.0.1", "https://npm.postfmly.com/simple-concat/-/simple-concat-1.0.1.tgz", {}, "sha512-cSFtAPtRhljv69IK0hTVZQ+OfE9nePi/rtJmw5UjHeVyVroEqJXP1sFztKUy1qU+xvz3u/sfYJLa947b7nAN2Q=="],
 

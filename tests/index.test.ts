@@ -14,8 +14,9 @@ const logoServer: LogoServer = new LogoServer({
   LOGO2_PATH: env.LOGO2_PATH
 } satisfies ILogoServerConfig)
 
-// * NOTE: suppress console output
-spyOn(console, "info").mockImplementation((): void => undefined)
+if (!env.TEST_FULL) {
+  spyOn(console, "info").mockImplementation((): void => undefined)
+}
 
 describe("index", (): void => {
   test("logo", async (): Promise<void> => {
