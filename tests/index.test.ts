@@ -9,9 +9,7 @@ import { type ILogoServerConfig, LogoServer, testingPort } from "../index.ts"
 const logoServer: LogoServer = new LogoServer({
   DEBUG: env.DEBUG,
   LOGO_NAME: env.LOGO_NAME,
-  LOGO_PATH: env.LOGO_PATH,
-  LOGO2_NAME: env.LOGO2_NAME,
-  LOGO2_PATH: env.LOGO2_PATH
+  LOGO_PATH: env.LOGO_PATH
 } satisfies ILogoServerConfig)
 
 if (!env.TEST_FULL) {
@@ -30,17 +28,6 @@ describe("index", (): void => {
 
     await logoServer.stop()
     await logoServer.stop() // for coverage
-  })
-
-  test("logo2", async (): Promise<void> => {
-    await logoServer.start()
-
-    const response = await fetch(new Request(`http://localhost:${testingPort}/${env.LOGO2_NAME}`))
-
-    expect(response.status).toBe(status.OK)
-    expect(response.headers.get("content-type")).toStartWith("image/")
-
-    await logoServer.stop()
   })
 
   test("favicon", async (): Promise<void> => {

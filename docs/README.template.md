@@ -29,7 +29,8 @@ bun add @postfmly/logoserver
 ```ts
 import { type ILogoServerConfig, LogoServer } from "@postfmly/logoserver"
 
-const logoServer: LogoServer = new LogoServer({ LOGO_NAME: "foo.png" } as ILogoServerConfig)
+// image file located @ ./foo.png
+const logoServer = new LogoServer({ LOGO_NAME: "foo.png" } satisfies ILogoServerConfig)
 
 await logoServer.start()
 await logoServer.stop()
@@ -37,15 +38,13 @@ await logoServer.stop()
 
 ### Environment Variables
 
-|       Description       |    Key     |       Value       |
-| :---------------------: | :--------: | :---------------: |
-|          Debug          |   DEBUG    |  true/**false**   |
-|        IPv4/IPv6        | LOGO_IPV6  |  true/**false**   |
-|  Logo Name<sup>1<sup>   | LOGO_NAME  |    \<filename>    |
-|     Logo Local Path     | LOGO_PATH  |         .         |
-|          Port           | LOGO_PORT  | **random**/[port] |
-| Logo 2 Name<sup>1</sup> | LOGO2_NAME |    [filename]     |
-|    Logo 2 Local Path    | LOGO2_PATH |         .         |
+|     Description      |    Key    |       Value       |
+| :------------------: | :-------: | :---------------: |
+|        Debug         |   DEBUG   |  true/**false**   |
+|      IPv4/IPv6       | LOGO_IPV6 |  true/**false**   |
+| Logo Name<sup>1<sup> | LOGO_NAME |    \<filename>    |
+|   Logo Local Path    | LOGO_PATH |         .         |
+|         Port         | LOGO_PORT | **random**/[port] |
 
 ###### <sup>1</sup> Supports PNG, WEBP, JPG/JPEG, GIF
 

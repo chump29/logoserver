@@ -20,8 +20,6 @@ const env = cleanEnv(Bun.env, {
   LOGO_NAME: str({ default: undefined, testDefault: "test.webp" }),
   LOGO_PATH: str({ default: ".", testDefault: "tests" }),
   LOGO_PORT: portValidator({ default: "random" }),
-  LOGO2_NAME: str({ default: undefined, testDefault: "test.webp" }),
-  LOGO2_PATH: str({ default: ".", testDefault: "tests" }),
   TEST_FULL: bool({ default: false })
 })
 

@@ -31,12 +31,6 @@ interface ILogoServerConfig {
   /** Logo server port
    * @default random */
   readonly LOGO_PORT?: number | "random"
-  /** Secondary logo name
-   * @default undefined */
-  readonly LOGO2_NAME?: string
-  /** Secondary logo path on server
-   * @default . */
-  readonly LOGO2_PATH?: string
 }
 
 let SERVER: Nullable<ReturnType<typeof serve>> = null
@@ -55,16 +49,10 @@ class LogoServer implements ILogoServerConfig {
   readonly LOGO_NAME?: string
   readonly LOGO_PATH: string
   readonly LOGO_PORT: "random" | number
-  readonly LOGO2_NAME?: string
-  readonly LOGO2_PATH: string
 
   private get logo(): string {
     // biome-ignore lint/style/noNonNullAssertion: only called if defined
     return join(this.LOGO_PATH, this.LOGO_NAME!)
-  }
-  private get logo2(): string {
-    // biome-ignore lint/style/noNonNullAssertion: only called if defined
-    return join(this.LOGO2_PATH, this.LOGO2_NAME!)
   }
 
   /** Logo server constructor
@@ -76,8 +64,6 @@ class LogoServer implements ILogoServerConfig {
     this.LOGO_NAME = config.LOGO_NAME ?? env.LOGO_NAME
     this.LOGO_PATH = config.LOGO_PATH ?? env.LOGO_PATH
     this.LOGO_PORT = config.LOGO_PORT ?? env.LOGO_PORT
-    this.LOGO2_NAME = config.LOGO2_NAME ?? env.LOGO2_NAME
-    this.LOGO2_PATH = config.LOGO2_PATH ?? env.LOGO2_PATH
 
     const logoName = this.LOGO_NAME // scope
     if (!(logoName && ext.some((e: string): boolean => logoName.endsWith(e)))) {
@@ -100,10 +86,6 @@ class LogoServer implements ILogoServerConfig {
     hono.use("*", secureHeaders({ crossOriginResourcePolicy: false }))
 
     hono.get(`/${this.LOGO_NAME}`, serveStatic({ path: this.logo }))
-
-    if (this.LOGO2_NAME) {
-      hono.get(`/${this.LOGO2_NAME}`, serveStatic({ path: this.logo2 }))
-    }
 
     hono.get("/favicon.ico", (c: Context) => c.body(null, status.NO_CONTENT))
 
@@ -128,7 +110,7 @@ class LogoServer implements ILogoServerConfig {
 
       if (this.DEBUG) {
         info(`🟢 Logo server started on port ${PORT}`)
-        console.info(` ⤷ Routing for: ${[this.LOGO_NAME, this.LOGO2_NAME].filter(Boolean).join(",")}`)
+        console.info(` ⤷ Routing for: ${this.logo}`)
       }
     } else if (this.DEBUG) {
       info("⚠️  Logo server already started")
