@@ -5,10 +5,10 @@
 ---
 
 ![Bun](https://img.shields.io/badge/Bun-1.4.4-informational?style=plastic&logo=bun "Bun") &nbsp;
-![Hono](https://img.shields.io/badge/Hono-4.13.16-informational?style=plastic&logo=hono "Hono")
+![Hono](https://img.shields.io/badge/Hono-4.13.19-informational?style=plastic&logo=hono "Hono")
 
 ![CodeQL](https://github.com/chump29/logger/workflows/CodeQL/badge.svg "CodeQL") &nbsp;
-![Coverage](https://img.shields.io/badge/Coverage-96.67%25-success?style=plastic&logo=jest "Coverage")
+![Coverage](https://img.shields.io/badge/Coverage-96.08%25-success?style=plastic&logo=jest "Coverage")
 
 ![NO AI](https://img.shields.io/badge/NO-AI-orange?style=plastic "NO AI") &nbsp;
 ![License](https://img.shields.io/github/license/chump29/logger?style=plastic&color=blueviolet&label=License&logo=gplv3 "GPLv3") &nbsp; <!-- markdownlint-disable MD013 -->

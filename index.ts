@@ -33,9 +33,9 @@ interface ILogoServerConfig {
   readonly LOGO_PORT?: number | "random"
 }
 
-let SERVER: Nullable<ReturnType<typeof serve>> = null
+type BunServer = ReturnType<typeof serve>
 
-let PORT: number = 0
+let instance: Nullable<Promise<BunServer>> = null
 
 /** For testing only */
 let testingPort: Nullable<number> = null
@@ -71,10 +71,10 @@ class LogoServer implements ILogoServerConfig {
     }
   }
 
-  private readonly server = async (): Promise<void> => {
+  private readonly server = async (): Promise<BunServer> => {
     const getHost = (): "::" | "0.0.0.0" => (this.LOGO_IPV6 ? "::" : "0.0.0.0")
 
-    PORT =
+    const port =
       typeof this.LOGO_PORT === "number"
         ? this.LOGO_PORT
         : await getPort({
@@ -92,40 +92,66 @@ class LogoServer implements ILogoServerConfig {
     const NOT_FOUND: ContentfulStatusCode = status.NOT_FOUND
     hono.notFound((c: Context) => c.text(status[NOT_FOUND], NOT_FOUND))
 
-    SERVER = serve({
+    const server = serve({
       fetch: hono.fetch,
       hostname: getHost(),
-      port: PORT
+      port
     })
 
     if (Bun.env.NODE_ENV === "test") {
-      testingPort = PORT
+      testingPort = port
     }
+
+    return server
   }
 
   /** Start logo server */
   start = async (): Promise<void> => {
-    if (!SERVER) {
-      await this.server()
+    if (instance !== null) {
+      await instance // block
 
       if (this.DEBUG) {
-        info(`🟢 Logo server started on port ${PORT}`)
-        console.info(` ⤷ Routing for: ${this.logo}`)
+        info("⚠️  Logo server already started")
       }
-    } else if (this.DEBUG) {
-      info("⚠️  Logo server already started")
+
+      return
+    }
+
+    const startup = this.server().catch((e: unknown): never => {
+      instance = null
+
+      throw e
+    })
+
+    instance = startup
+
+    const server = await startup
+
+    if (this.DEBUG) {
+      info(`🟢 Logo server started on port ${server.port}`)
+      console.info(` ⤷ Routing for: ${this.logo}`) // no timestamp
     }
   }
 
   /** Stop logo server */
   stop = async (): Promise<void> => {
-    if (SERVER) {
-      await SERVER.stop()
+    const current = instance
 
-      SERVER = null
+    if (current !== null) {
+      instance = null
 
-      if (this.DEBUG) {
-        info("🔴 Logo server stopped")
+      const server = await current.catch((): null => null) // resolve or block
+
+      if (server !== null) {
+        await server.stop()
+
+        if (Bun.env.NODE_ENV === "test") {
+          testingPort = null
+        }
+
+        if (this.DEBUG) {
+          info("🔴 Logo server stopped")
+        }
       }
     } else if (this.DEBUG) {
       info("⚠️  Logo server already stopped")

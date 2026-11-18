@@ -1,4 +1,4 @@
-import { describe, expect, spyOn, test } from "bun:test"
+import { afterEach, describe, expect, spyOn, test } from "bun:test"
 
 import { type ContentfulStatusCode } from "hono/utils/http-status"
 import { status } from "http-status"
@@ -15,6 +15,10 @@ const logoServer: LogoServer = new LogoServer({
 if (!env.TEST_FULL) {
   spyOn(console, "info").mockImplementation((): void => undefined)
 }
+
+afterEach(async (): Promise<void> => {
+  await logoServer.stop() // in case of fail
+})
 
 describe("index", (): void => {
   test("logo", async (): Promise<void> => {
@@ -51,5 +55,11 @@ describe("index", (): void => {
     expect(await response.text()).toBe(status[NOT_FOUND])
 
     await logoServer.stop()
+  })
+
+  test("invalid logo", (): void => {
+    expect((): LogoServer => new LogoServer({ LOGO_NAME: "logo.test" } satisfies ILogoServerConfig)).toThrow(
+      "Invalid LOGO_NAME"
+    )
   })
 })
