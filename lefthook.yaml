@@ -1,5 +1,3 @@
-# cSpell: ignore doublestar
-
 # yaml-language-server: $schema=https://lefthook.dev/schema.json
 
 glob_matcher: doublestar
@@ -10,6 +8,15 @@ pre-commit:
     - name: cSpell
       run: bun run --bun cspell --dot --no-must-find-files {staged_files}
 
-    - name: Biome
+    - name: TS Check
+      run: bun check
+
+    - name: JSON/MD/TS/YAML
       glob: "**/*.{json,md,ts,yaml}"
       run: bun run --bun biome ci --no-errors-on-unmatched --error-on-warnings {staged_files}
+
+    - name: Deps
+      run: bun run deps
+
+    - name: Scan
+      run: bun run scan

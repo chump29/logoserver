@@ -11,9 +11,17 @@ import { type Context } from "hono"
 import { secureHeaders } from "hono/secure-headers"
 import { Hono } from "hono/tiny"
 import { type ContentfulStatusCode } from "hono/utils/http-status"
-import { status } from "http-status"
 
 import { env } from "./env.ts"
+
+const HttpStatus = {
+  NO_CONTENT: 204,
+  NOT_FOUND: 404
+} as const
+
+const HttpMessage = {
+  [HttpStatus.NOT_FOUND]: "Not Found"
+} as const
 
 interface ILogoServerConfig {
   /** Show debug
@@ -87,10 +95,10 @@ class LogoServer implements ILogoServerConfig {
 
     hono.get(`/${this.LOGO_NAME}`, serveStatic({ path: this.logo }))
 
-    hono.get("/favicon.ico", (c: Context) => c.body(null, status.NO_CONTENT))
+    hono.get("/favicon.ico", (c: Context) => c.body(null, HttpStatus.NO_CONTENT))
 
-    const NOT_FOUND: ContentfulStatusCode = status.NOT_FOUND
-    hono.notFound((c: Context) => c.text(status[NOT_FOUND], NOT_FOUND))
+    const NOT_FOUND: ContentfulStatusCode = HttpStatus.NOT_FOUND
+    hono.notFound((c: Context) => c.text(HttpMessage[NOT_FOUND], NOT_FOUND))
 
     const server = serve({
       fetch: hono.fetch,

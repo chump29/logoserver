@@ -1,10 +1,19 @@
 import { afterEach, describe, expect, spyOn, test } from "bun:test"
 
 import { type ContentfulStatusCode } from "hono/utils/http-status"
-import { status } from "http-status"
 
 import { env } from "../env.ts"
 import { type ILogoServerConfig, LogoServer, testingPort } from "../index.ts"
+
+const HttpStatus = {
+  NO_CONTENT: 204,
+  NOT_FOUND: 404,
+  OK: 200
+} as const
+
+const HttpMessage = {
+  [HttpStatus.NOT_FOUND]: "Not Found"
+} as const
 
 const logoServer: LogoServer = new LogoServer({
   DEBUG: env.DEBUG,
@@ -27,7 +36,7 @@ describe("index", (): void => {
 
     const response = await fetch(new Request(`http://localhost:${testingPort}/${env.LOGO_NAME}`))
 
-    expect(response.status).toBe(status.OK)
+    expect(response.status).toBe(HttpStatus.OK)
     expect(response.headers.get("content-type")).toStartWith("image/")
 
     await logoServer.stop()
@@ -39,7 +48,7 @@ describe("index", (): void => {
 
     const response = await fetch(new Request(`http://localhost:${testingPort}/favicon.ico`))
 
-    expect(response.status).toBe(status.NO_CONTENT)
+    expect(response.status).toBe(HttpStatus.NO_CONTENT)
     expect(await response.text()).toBeEmpty()
 
     await logoServer.stop()
@@ -49,10 +58,10 @@ describe("index", (): void => {
     await logoServer.start()
 
     const response = await fetch(new Request(`http://localhost:${testingPort}/test`))
-    const NOT_FOUND: ContentfulStatusCode = status.NOT_FOUND
+    const NOT_FOUND: ContentfulStatusCode = HttpStatus.NOT_FOUND
 
     expect(response.status).toBe(NOT_FOUND)
-    expect(await response.text()).toBe(status[NOT_FOUND])
+    expect(await response.text()).toBe(HttpMessage[NOT_FOUND])
 
     await logoServer.stop()
   })
